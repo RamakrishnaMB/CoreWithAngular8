@@ -56,5 +56,148 @@ namespace CoreDataLayer.Implementation
             return dbQuery.AsNoTracking();
         }
 
+        public IQueryable<T> Fetch(Expression<Func<T, bool>> filter = null)
+        {
+            IQueryable<T> query = this.RepositoryContext.Set<T>();
+
+            if (filter != null)
+                query = query.Where(filter);
+
+            return query;
+        }
+
+        public T GetById(object id)
+        {
+            return this.RepositoryContext.Set<T>().Find(id);
+        }
+
+        public void Add(T entity)
+        {
+            this.RepositoryContext.Set<T>().Add(entity);
+            this.RepositoryContext.SaveChanges();
+        }
+
+      
+        public void DeleteAll(List<T> entityList)
+        {
+            foreach (var entity in entityList)
+            {
+                var entry = this.RepositoryContext.Entry(entity);
+                if (entry.State == EntityState.Detached)
+                {
+                    this.RepositoryContext.Set<T>().Attach(entity);
+                }
+                this.RepositoryContext.Set<T>().Remove(entity);
+                this.RepositoryContext.SaveChanges();
+
+            }
+        }
+
+        
+        public void SaveChanges()
+        {
+            this.RepositoryContext.SaveChanges();
+        }
+
+        public void SaveChangesAsync()
+        {
+            this.RepositoryContext.SaveChangesAsync();
+        }
+
+        public async Task SaveChangesTaskAsync()
+        {
+            await this.RepositoryContext.SaveChangesAsync();
+        }
+
+        public void UpdateChanges(T entity)
+        {
+            var entry = this.RepositoryContext.Entry<T>(entity);
+            entry.State = EntityState.Modified;
+            this.RepositoryContext.SaveChanges();
+        }
+
+        public IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties)
+        {
+            IQueryable<T> dbQuery = this.RepositoryContext.Set<T>();
+
+            if (navigationProperties != null)
+                dbQuery = navigationProperties.Aggregate(dbQuery.Where(where).AsQueryable(), (current, include) => current.Include(include));
+
+            return dbQuery.ToList();
+        }
+
+
+        public IList<T> GetList(Func<T, bool> where, Expression<Func<T, object>> orderBy, SortOrder sortOrder, params Expression<Func<T, object>>[] navigationProperties)
+        {
+            IQueryable<T> dbQuery = this.RepositoryContext.Set<T>();
+
+            if (navigationProperties != null)
+                dbQuery = navigationProperties.Aggregate(dbQuery.Where(where).AsQueryable(), (current, include) => current.Include(include));
+
+            if (orderBy != null)
+            {
+                if (sortOrder == SortOrder.Ascending)
+                {
+                    dbQuery = dbQuery.OrderBy(orderBy);
+                }
+                else if (sortOrder == SortOrder.Descending)
+                {
+                    dbQuery = dbQuery.OrderByDescending(orderBy);
+                }
+            }
+            return dbQuery.ToList();
+        }
+
+        public T GetSingle(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties)
+        {
+            T entity = null;
+            IQueryable<T> dbQuery = this.RepositoryContext.Set<T>();
+
+            if (navigationProperties != null)
+                dbQuery = navigationProperties.Aggregate(dbQuery.AsNoTracking().Where(where).AsQueryable(), (current, include) => current.Include(include));
+
+
+
+            entity = dbQuery.SingleOrDefault();
+
+            return entity;
+        }
+
+        public T GetSingle(Func<T, bool> where, Expression<Func<T, object>> orderByDescending, params Expression<Func<T, object>>[] navigationProperties)
+        {
+            T entity = null;
+            IQueryable<T> dbQuery = this.RepositoryContext.Set<T>();
+
+            if (navigationProperties != null)
+                dbQuery = navigationProperties.Aggregate(dbQuery.AsNoTracking().Where(where).AsQueryable(), (current, include) => current.Include(include));
+
+            if (orderByDescending != null)
+                dbQuery = dbQuery.OrderByDescending(orderByDescending);
+
+            entity = dbQuery.SingleOrDefault();
+
+            return entity;
+        }
+
+        
+      
+        public T Reload(T entity)
+        {
+            this.RepositoryContext.Entry(entity).Reload();
+            return entity;
+        }
+
+
+        public void AddRange(List<T> entityList)
+        {
+            this.RepositoryContext.Set<T>().AddRange(entityList);
+            this.RepositoryContext.SaveChanges();
+        }
+
+        public void ExecSqlCommand(string sql, params object[] parameters)
+        {
+            this.RepositoryContext.Database.ExecuteSqlCommand(sql, parameters);
+        }
+
     }
 }
