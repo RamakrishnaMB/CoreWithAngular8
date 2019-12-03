@@ -6,23 +6,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CoreDataLayer.ModelsDB;
+using CoreDataLayer.Interface;
+using Models;
+using CoreBusinessLogic.Interface;
 
 namespace CoreWebAppRazor.Controllers
 {
     public class CustomersController : Controller
     {
         private readonly dbTestContext _context;
+        private readonly ICustomerService _CustomerService;
 
-        public CustomersController(dbTestContext context)
+        public CustomersController(dbTestContext context, ICustomerService customerService)
         {
             _context = context;
+            _CustomerService = customerService;
+        }
+
+        public ActionResult Index()
+        {
+            var listCustomers = _CustomerService.GetCustomers();
+            return View(listCustomers);
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Customers.ToListAsync());
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Customers.ToListAsync());
+        //}
 
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)

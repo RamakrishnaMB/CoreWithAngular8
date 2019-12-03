@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreBusinessLogic.Interface;
 using CoreDataLayer.ModelsDB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CoreBusinessLogic.Implementation;
+using CoreDataLayer.Interface;
+using CoreDataLayer.Implementation;
 
 namespace CoreWebAppRazor
 {
@@ -37,6 +41,8 @@ namespace CoreWebAppRazor
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<ICustomerService, CustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

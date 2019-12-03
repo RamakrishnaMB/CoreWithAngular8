@@ -16,6 +16,6 @@ namespace CoreDataLayer.Interface
         void Update(T entity);
         void Delete(T entity);
 
-
+        IQueryable<T> GetAll(params Expression<Func<T, object>>[] navigationProperties);
     }
 }

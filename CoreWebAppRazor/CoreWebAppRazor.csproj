@@ -15,6 +15,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\CoreBusinessLogic\CoreBusinessLogic.csproj" />
     <ProjectReference Include="..\CoreDataLayer\CoreDataLayer.csproj" />
   </ItemGroup>
 

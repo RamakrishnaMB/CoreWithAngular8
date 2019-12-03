@@ -44,7 +44,17 @@ namespace CoreDataLayer.Implementation
             this.RepositoryContext.Set<T>().Remove(entity);
         }
 
+        //RK 
+        
+        public IQueryable<T> GetAll(params Expression<Func<T, object>>[] navigationProperties)
+        {
+            IQueryable<T> dbQuery = this.RepositoryContext.Set<T>();
 
+            if (navigationProperties != null)
+                dbQuery = navigationProperties.Aggregate(dbQuery, (current, include) => current.Include(include));
+
+            return dbQuery.AsNoTracking();
+        }
 
     }
 }
