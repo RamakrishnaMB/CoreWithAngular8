@@ -13,6 +13,6 @@ namespace CoreDataLayer.ModelsDB
         public int RoomTypeId { get; set; }
         public string RoomType1 { get; set; }
 
-        public ICollection<Booking> Booking { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
     }
 }

@@ -25,13 +25,14 @@ namespace CoreDataLayer.ModelsDB
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=ES-SYS-764\\SQL2017;Database=dbTest;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(ConnectionString.GetConnectionString);
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+
             modelBuilder.Entity<Booking>(entity =>
             {
                 entity.Property(e => e.BookingId)
@@ -57,9 +58,12 @@ namespace CoreDataLayer.ModelsDB
 
             modelBuilder.Entity<Customers>(entity =>
             {
-                entity.HasKey(e => e.Cid);
+                entity.HasKey(e => e.Cid)
+                    .HasName("PK__Customer__C1F8DC39CD09601D");
 
                 entity.Property(e => e.Cid).HasColumnName("CId");
+
+                entity.Property(e => e.Email).HasMaxLength(20);
 
                 entity.Property(e => e.Name).HasMaxLength(20);
 

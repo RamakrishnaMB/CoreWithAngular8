@@ -11,7 +11,7 @@ namespace CoreDataLayer.ModelsDB
         public DateTime? CheckOutDate { get; set; }
         public int? RoomId { get; set; }
 
-        public Customers C { get; set; }
-        public RoomType Room { get; set; }
+        public virtual Customers C { get; set; }
+        public virtual RoomType Room { get; set; }
     }
 }

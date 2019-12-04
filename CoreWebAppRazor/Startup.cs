@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using CoreBusinessLogic.Implementation;
 using CoreDataLayer.Interface;
 using CoreDataLayer.Implementation;
+using CoreDataLayer;
 
 namespace CoreWebAppRazor
 {
@@ -29,8 +30,8 @@ namespace CoreWebAppRazor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<dbTestContext>(opts =>
-       opts.UseSqlServer(Configuration.GetConnectionString("sqlconnection")));
+            // services.AddDbContext<dbTestContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("sqlconnection")));
+            services.AddDbContext<dbTestContext>(opts => opts.UseSqlServer(ConnectionString.GetConnectionString));
 
             services.Configure<CookiePolicyOptions>(options =>
             {

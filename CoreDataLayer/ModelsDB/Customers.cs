@@ -13,7 +13,8 @@ namespace CoreDataLayer.ModelsDB
         public int Cid { get; set; }
         public string Name { get; set; }
         public string Telephone { get; set; }
+        public string Email { get; set; }
 
-        public ICollection<Booking> Booking { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
     }
 }
