@@ -1,8 +1,8 @@
 export class Customers {
 
-  public Cid: number;
-  public Name: string;
-  public Telephone: string;
-  public Email: string;
+  public cid: number;
+  public name: string;
+  public telephone: string;
+  public email: string;
 
 }

@@ -9,11 +9,16 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class CustomerService {
 
-  constructor(private http: HttpClient) { }
+  BaseURL: string;
+
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.BaseURL = baseUrl;
+  }
 
 
-  GetCustomers(@Inject('BASE_URL') baseUrl: string): Observable<Customers[]> {
-    return this.http.get<Customers[]>(baseUrl+'api/Customers').pipe(
+  GetCustomers(): Observable<Customers[]> {
+    debugger;
+    return this.http.get<Customers[]>(this.BaseURL + 'api/Customers/GetDetails').pipe(
       tap(_ => console.log("fetched customer data from service")), catchError(this.handleError<Customers[]>('GetCustomers', []))
     );
   }

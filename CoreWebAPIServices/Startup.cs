@@ -27,11 +27,19 @@ namespace CoreWebAPIServices
         }
 
         public IConfiguration Configuration { get; }
-
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<dbTestContext>(opts => opts.UseSqlServer(ConnectionString.GetConnectionString));
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:54239/").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICustomerService, CustomerService>();
@@ -44,8 +52,9 @@ namespace CoreWebAPIServices
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseMvc();
+
         }
     }
 }

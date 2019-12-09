@@ -1,3 +1,31 @@
 <p>
   customers works!
 </p>
+<div>
+  <div>
+    <div class="grid-container grid-container-hdr">
+      <div>Name</div>
+      <div>Telephone</div>
+      <div>Email</div>
+      <div class="name-date">CustomerID</div>
+    </div>
+
+    <div class="grid-container" *ngFor="let customer of lstCustomers">
+      <div>{{customer.name}}</div>
+      <div>{{customer.telephone}}</div>
+      <div>{{customer.email}}</div>
+      <div class="name-date">{{customer.cid}}</div>
+    </div>
+  </div>
+</div>
+<ng-template #no_data_templ>
+  <div class="grid-container grid-container-hdr">
+    <div>Name</div>
+    <div>Telephone</div>
+    <div>Email</div>
+    <div class="name-date">CustomerID</div>
+  </div>
+  No data found...
+</ng-template>
+
+

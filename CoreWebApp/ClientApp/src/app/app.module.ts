@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CustomersComponent } from './customers/customers.component';
+import { CustomerService } from './Services/customer.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { CustomersComponent } from './customers/customers.component';
       { path: 'customer', component: CustomersComponent },
     ])
   ],
-  providers: [],
+  providers: [CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
