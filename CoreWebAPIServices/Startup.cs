@@ -37,7 +37,7 @@ namespace CoreWebAPIServices
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:54239/").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                    builder.WithOrigins("http://localhost:54239").AllowAnyOrigin();
                 });
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
