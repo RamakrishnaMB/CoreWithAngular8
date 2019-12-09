@@ -31,7 +31,7 @@ namespace CoreWebAPIServices.Controllers
 
             APIMessage aPIMessage = new APIMessage { StatusCode = (int)HttpStatusCode.OK, StatusMessage = "Sucess great !!", Data = customers };
 
-            //method: post, url : http://localhost:30888/api/Subject/getSubjectsForExamPaper , Request body: { userId:10,deviceId:11,gradeId:22} , Content-Type: application/json            
+            //method: post, url : http://localhost:58272/api/customers/getdetails , Request body: { userId:10,deviceId:11,gradeId:22} , Content-Type: application/json            
 
 
 
