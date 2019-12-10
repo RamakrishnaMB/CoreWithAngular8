@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Configuration;
-using CoreBusinessLogic.Implementation;
-using CoreBusinessLogic.Interface;
-using CoreDataLayer;
-using CoreDataLayer.Implementation;
-using CoreDataLayer.Interface;
-using CoreDataLayer.ModelsDB;
+﻿using Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace CoreWebAPIServices
 {
@@ -40,7 +26,7 @@ namespace CoreWebAPIServices
                     builder.WithOrigins("http://localhost:54239").AllowAnyOrigin();
                 });
             });
-            ConfigStartup.InitializeStartup(services);
+            ConfigStartup.InitializeStartup(services, typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CoreBusinessLogic.Interface;
-using CoreDataLayer.ModelsDB;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CoreBusinessLogic.Implementation;
-using CoreDataLayer.Interface;
-using CoreDataLayer.Implementation;
-using CoreDataLayer;
 using Configuration;
 
 namespace CoreWebAppRazor
@@ -32,7 +20,7 @@ namespace CoreWebAppRazor
         public void ConfigureServices(IServiceCollection services)
         {
             // services.AddDbContext<dbTestContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("sqlconnection")));
-       
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -40,8 +28,7 @@ namespace CoreWebAppRazor
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            ConfigStartup.InitializeStartup(services);
+            ConfigStartup.InitializeStartup(services, typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

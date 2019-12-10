@@ -1,11 +1,10 @@
-﻿using CoreDataLayer.ModelsDB;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Models
+﻿namespace Models
 {
-    public class CustomersModel: Customers
+    public class CustomersModel
     {
+        public int Cid { get; set; }
+        public string Name { get; set; }
+        public string Telephone { get; set; }
+        public string Email { get; set; }
     }
 }
