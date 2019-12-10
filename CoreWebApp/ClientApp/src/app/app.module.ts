@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -11,6 +11,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerService } from './Services/customer.service';
+import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,17 +22,19 @@ import { CustomerService } from './Services/customer.service';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    CustomersComponent
+    CustomersComponent,
+    AddCustomerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
-    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'customer', component: CustomersComponent },
+      { path: 'addcustomer', component: AddCustomerComponent }
     ])
   ],
   providers: [CustomerService],
