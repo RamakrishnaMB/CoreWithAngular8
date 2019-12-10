@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Threading.Tasks;
 using CoreBusinessLogic.Interface;
 using CoreDataLayer.ModelsDB;
 using CoreWebAPIServices.Utilites;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace CoreWebAPIServices.Controllers
 {
@@ -35,9 +38,23 @@ namespace CoreWebAPIServices.Controllers
 
 
 
-            return StatusCode(200, customers);
+            return StatusCode((int)HttpStatusCode.OK, customers);
 
 
         }
+
+        [HttpPost]
+        [Route("AddCustomerAsync")]
+        public async Task<IActionResult> AddCustomerAsync([FromBody][Bind("Name,Telephone")] CustomersModel customer)
+        {
+            if (ModelState.IsValid)
+            {
+                await this.customerService.AddCustomer(customer);
+             
+            }
+
+            return StatusCode((int)HttpStatusCode.OK, customer);
+        }
+
     }
 }
