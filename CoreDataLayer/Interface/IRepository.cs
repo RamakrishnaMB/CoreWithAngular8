@@ -27,8 +27,7 @@ namespace CoreDataLayer.Interface
         void UpdateChanges(T entity);
         void SaveChanges();
 
-        void SaveChangesAsync();
-        Task SaveChangesTaskAsync();
+        Task SaveChangesAsync();
         IQueryable<T> Fetch(Expression<Func<T, bool>> filter = null);
         IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
         IList<T> GetList(Func<T, bool> where, Expression<Func<T, object>> orderBy, SortOrder sortOrder, params Expression<Func<T, object>>[] navigationProperties);

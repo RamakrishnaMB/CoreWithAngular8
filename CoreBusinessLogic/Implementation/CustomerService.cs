@@ -6,6 +6,7 @@ using CoreDataLayer.ModelsDB;
 using Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CoreBusinessLogic.Implementation
 {
@@ -22,9 +23,14 @@ namespace CoreBusinessLogic.Implementation
 
         public List<Customers> GetCustomers()
         {
-            List<Customers> test1 = _CustomerRepository.GetAll().ToList();
-            var test = this.mapper.Map<List<CustomersModel>>(test1);
             return _CustomerRepository.GetAll().ToList();
+        }
+
+        public async Task AddCustomer(CustomersModel customersModel)
+        {
+            Customers customers = this.mapper.Map<Customers>(customersModel);
+            _CustomerRepository.Add(customers);
+            await _CustomerRepository.SaveChangesAsync();
         }
     }
 }

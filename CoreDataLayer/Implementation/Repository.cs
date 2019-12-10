@@ -99,16 +99,12 @@ namespace CoreDataLayer.Implementation
             this.RepositoryContext.SaveChanges();
         }
 
-        public void SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
-            this.RepositoryContext.SaveChangesAsync();
+          await this.RepositoryContext.SaveChangesAsync();
         }
 
-        public async Task SaveChangesTaskAsync()
-        {
-            await this.RepositoryContext.SaveChangesAsync();
-        }
-
+      
         public void UpdateChanges(T entity)
         {
             var entry = this.RepositoryContext.Entry<T>(entity);

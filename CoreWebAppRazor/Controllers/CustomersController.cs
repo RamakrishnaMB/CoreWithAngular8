@@ -62,18 +62,30 @@ namespace CoreWebAppRazor.Controllers
         // POST: Customers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        //public async Task<IActionResult> Create([Bind("Cid,Name,Telephone")] Customers customers)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(customers);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(customers);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Cid,Name,Telephone")] Customers customers)
+        public async Task<IActionResult> Create([Bind("Name,Telephone")] CustomersModel customer)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customers);
-                await _context.SaveChangesAsync();
+                await _CustomerService.AddCustomer(customer);
                 return RedirectToAction(nameof(Index));
             }
-            return View(customers);
+            return View(customer);
         }
+
 
         // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(int? id)
