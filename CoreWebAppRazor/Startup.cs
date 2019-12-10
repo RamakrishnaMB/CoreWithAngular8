@@ -15,6 +15,7 @@ using CoreBusinessLogic.Implementation;
 using CoreDataLayer.Interface;
 using CoreDataLayer.Implementation;
 using CoreDataLayer;
+using Configuration;
 
 namespace CoreWebAppRazor
 {
@@ -31,7 +32,7 @@ namespace CoreWebAppRazor
         public void ConfigureServices(IServiceCollection services)
         {
             // services.AddDbContext<dbTestContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("sqlconnection")));
-            services.AddDbContext<dbTestContext>(opts => opts.UseSqlServer(ConnectionString.GetConnectionString));
+       
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -40,10 +41,7 @@ namespace CoreWebAppRazor
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<ICustomerService, CustomerService>();
+            ConfigStartup.InitializeStartup(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

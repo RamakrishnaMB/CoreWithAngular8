@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Configuration;
 using CoreBusinessLogic.Implementation;
 using CoreBusinessLogic.Interface;
 using CoreDataLayer;
@@ -31,7 +32,6 @@ namespace CoreWebAPIServices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<dbTestContext>(opts => opts.UseSqlServer(ConnectionString.GetConnectionString));
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,
@@ -40,9 +40,7 @@ namespace CoreWebAPIServices
                     builder.WithOrigins("http://localhost:54239").AllowAnyOrigin();
                 });
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<ICustomerService, CustomerService>();
+            ConfigStartup.InitializeStartup(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

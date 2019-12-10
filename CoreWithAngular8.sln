@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebApp", "CoreWebApp\CoreWebApp.csproj", "{9239059C-9FB6-4C20-87C8-55812EC3ABE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebAngular8", "CoreWebApp\CoreWebAngular8.csproj", "{9239059C-9FB6-4C20-87C8-55812EC3ABE6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreBusinessLogic", "CoreBusinessLogic\CoreBusinessLogic.csproj", "{0574E368-226A-4C49-943F-6E127AD2F210}"
 EndProject
@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebAppRazor", "CoreWebA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{5C81F9E6-9765-40E5-AB5D-3A00B144E675}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWebAPIServices", "CoreWebAPIServices\CoreWebAPIServices.csproj", "{FBBA55F7-1BF5-42BC-920B-8F525C3A7B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebAPIServices", "CoreWebAPIServices\CoreWebAPIServices.csproj", "{FBBA55F7-1BF5-42BC-920B-8F525C3A7B0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configuration", "Configuration\Configuration.csproj", "{B737B520-2FE2-4E8D-B59E-1DFFF125BBEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{FBBA55F7-1BF5-42BC-920B-8F525C3A7B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBBA55F7-1BF5-42BC-920B-8F525C3A7B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBBA55F7-1BF5-42BC-920B-8F525C3A7B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B737B520-2FE2-4E8D-B59E-1DFFF125BBEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B737B520-2FE2-4E8D-B59E-1DFFF125BBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B737B520-2FE2-4E8D-B59E-1DFFF125BBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B737B520-2FE2-4E8D-B59E-1DFFF125BBEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
