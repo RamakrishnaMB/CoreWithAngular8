@@ -18,7 +18,6 @@ export class CustomersComponent implements OnInit {
   }
 
   GetCustomers(): void {
-    debugger;
     this.CustService.GetCustomers().subscribe(cust => this.lstCustomers = cust);
   }
 

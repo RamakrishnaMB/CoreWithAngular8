@@ -1,10 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customers } from '../customers/Customer';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class CustomerService {
@@ -20,6 +23,14 @@ export class CustomerService {
     debugger;
     return this.http.get<Customers[]>(this.BaseURL + 'api/Customers/GetDetails').pipe(
       tap(_ => console.log("fetched customer data from service")), catchError(this.handleError<Customers[]>('GetCustomers', []))
+    );
+  }
+
+
+  AddCustomer(Customer: Customers): Observable<Customers> {
+    return this.http.post<Customers>(this.BaseURL + 'api/customers/AddCustomerAsync', Customer, httpOptions).pipe(
+      tap((Customer: Customers) => console.log(`New customer added successfully! his id = ${Customer.cid}`)),
+      catchError(this.handleError<Customers>('add customer error in service'))
     );
   }
 

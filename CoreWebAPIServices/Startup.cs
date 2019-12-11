@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 
 namespace CoreWebAPIServices
 {
@@ -18,15 +19,16 @@ namespace CoreWebAPIServices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
+            ConfigStartup.InitializeStartup(services, typeof(Startup));
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:54239").AllowAnyOrigin();
+                    builder.WithOrigins("http://localhost:54239").WithHeaders(HeaderNames.ContentType, "application/json").AllowAnyOrigin();
                 });
             });
-            ConfigStartup.InitializeStartup(services, typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

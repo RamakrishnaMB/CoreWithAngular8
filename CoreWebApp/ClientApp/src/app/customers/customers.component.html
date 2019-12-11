@@ -2,21 +2,37 @@
   customers works!
 </p>
 <div>
-  <div>
-    <div class="grid-container grid-container-hdr">
-      <div>Name</div>
-      <div>Telephone</div>
-      <div>Email</div>
-      <div class="name-date">CustomerID</div>
-    </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Telephone
+        </th>
+        <th>
+          Email
+        </th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <div class="grid-container" *ngFor="let customer of lstCustomers">
-      <div>{{customer.name}}</div>
-      <div>{{customer.telephone}}</div>
-      <div>{{customer.email}}</div>
-      <div class="name-date">{{customer.cid}}</div>
-    </div>
-  </div>
+      <tr *ngFor="let customer of lstCustomers">
+        <td>
+          {{customer.name}}
+        </td>
+        <td>
+          {{customer.telephone}}
+        </td>
+        <td>
+          {{customer.email}}
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
 </div>
 <ng-template #no_data_templ>
   <div class="grid-container grid-container-hdr">
