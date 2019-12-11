@@ -29,7 +29,7 @@ export class AddCustomerComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
+    debugger;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
