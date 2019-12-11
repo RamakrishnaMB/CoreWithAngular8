@@ -1,7 +1,10 @@
 import { Component, forwardRef, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormBuilder, FormGroup, Validators, FormControl, NG_VALIDATORS } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, FormGroup, Validators, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Customers } from '../Customer';
+
+
+
 @Component({
   selector: 'app-customertemplate',
   templateUrl: './customertemplate.component.html',
@@ -15,15 +18,21 @@ import { Customers } from '../Customer';
     {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => CustomertemplateComponent),
-      multi: true,
+      multi: true
     }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomertemplateComponent implements ControlValueAccessor, OnDestroy {
 
+
+
+export class CustomertemplateComponent implements ControlValueAccessor, OnDestroy {
   form: FormGroup;
   subscriptions: Subscription[] = [];
+
+  get f() {
+    return this.form.controls;
+  }
 
   get value(): Customers {
     return this.form.value;
@@ -35,21 +44,13 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
     this.onTouched();
   }
 
-  get titleControl() {
-    return this.form.controls.title;
-  }
-
-  get emailControl() {
-    return this.form.controls.email;
-  }
-
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      title: ['', Validators.required],
+      // title: ['', Validators.required],
       name: ['', Validators.required],
       telephone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      acceptTerms: [false, Validators.requiredTrue]
+      email: ['', [Validators.required, Validators.email]]
+      //  acceptTerms: [false, Validators.requiredTrue]
     });
 
     this.subscriptions.push(
@@ -60,6 +61,7 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
     );
   }
 
+
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
@@ -67,10 +69,8 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
   onChange: any = () => { };
   onTouched: any = () => { };
 
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
 
+  //ControlValueAccessor interface methods
   writeValue(value) {
     if (value) {
       this.value = value;
@@ -81,12 +81,16 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
     }
   }
 
+  registerOnChange(fn) {
+    this.onChange = fn;
+  }
+
   registerOnTouched(fn) {
     this.onTouched = fn;
   }
-
+  //-------------------------------------
   validate(_: FormControl) {
-    return this.form.valid ? null : { profile: { valid: false, }, };
+    return this.form.valid ? null : { cmnCustomerFields: { valid: false, }, };
   }
 
 }
