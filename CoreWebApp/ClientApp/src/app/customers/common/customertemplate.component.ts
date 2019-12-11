@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, Validators, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, FormGroup, Validators, FormControl, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Customers } from '../Customer';
 
@@ -9,17 +9,16 @@ import { Customers } from '../Customer';
   selector: 'app-customertemplate',
   templateUrl: './customertemplate.component.html',
   styleUrls: ['./customertemplate.component.css'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomertemplateComponent),
-      multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => CustomertemplateComponent),
-      multi: true
-    }
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => CustomertemplateComponent),
+    multi: true
+  },
+  {
+    provide: NG_VALIDATORS,
+    useExisting: forwardRef(() => CustomertemplateComponent),
+    multi: true,
+  }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -66,11 +65,13 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  onChange: any = () => { };
-  onTouched: any = () => { };
+
 
 
   //ControlValueAccessor interface methods
+  onChange: any = () => { };
+  onTouched: any = () => { };
+
   writeValue(value) {
     if (value) {
       this.value = value;
@@ -90,6 +91,7 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
   }
   //-------------------------------------
   validate(_: FormControl) {
+    debugger;
     return this.form.valid ? null : { cmnCustomerFields: { valid: false, }, };
   }
 
