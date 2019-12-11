@@ -20,11 +20,7 @@ export class AddCustomerComponent implements OnInit {
   ngOnInit() {
 
     this.registerForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      name: ['', Validators.required],
-      telephone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      acceptTerms: [false, Validators.requiredTrue]
+      cmnCustomerFields:[]
     });
 
   }

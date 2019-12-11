@@ -14,6 +14,7 @@ import { CustomerService } from './Services/customer.service';
 import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomertemplateComponent } from './customers/common/customertemplate.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CounterComponent,
     FetchDataComponent,
     CustomersComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
+    CustomertemplateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
