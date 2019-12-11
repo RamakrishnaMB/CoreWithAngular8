@@ -27,19 +27,20 @@
             <span class='glyphicon glyphicon-th-list'></span> Fetch data
           </a>
         </li>
-        <li [routerLinkActive]='["link-active"]'>
+        <li [routerLinkActive]='["nav-link active","link-active"]'>
           <a [routerLink]='["/customer"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-user'></span> Customers
           </a>
           <ul>
             <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/addcustomer"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-user'></span> Customers
+              <a [routerLink]='["/addcustomer"]'>
+                <span class='glyphicon glyphicon-plus'></span> Customers
               </a>
             </li>
 
           </ul>
         </li>
+        
       </ul>
     </div>
   </div>
