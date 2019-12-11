@@ -91,7 +91,6 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
   }
   //-------------------------------------
   validate(_: FormControl) {
-    debugger;
     return this.form.valid ? null : { cmnCustomerFields: { valid: false, }, };
   }
 

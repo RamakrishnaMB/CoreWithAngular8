@@ -17,18 +17,14 @@ export class AddCustomerComponent implements OnInit {
   submitted = false;
   customer: Customers;
 
-
   constructor(private formBuilder: FormBuilder, private CustService: CustomerService, private _router: Router) {
-    this.registerForm = this.formBuilder.group({
-      cmnCustomerFields: []
-    });
 
   }
 
   ngOnInit() {
-
-
-
+    this.registerForm = this.formBuilder.group({
+      cmnCustomerFields: []
+    });
   }
 
   // convenience getter for easy access to form fields
