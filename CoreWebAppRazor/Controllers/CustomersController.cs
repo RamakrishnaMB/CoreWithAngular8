@@ -59,10 +59,8 @@ namespace CoreWebAppRazor.Controllers
             return View();
         }
 
-        // POST: Customers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 
+        // POST: Customers/Create
         //public async Task<IActionResult> Create([Bind("Cid,Name,Telephone")] Customers customers)
         //{
         //    if (ModelState.IsValid)
@@ -74,6 +72,9 @@ namespace CoreWebAppRazor.Controllers
         //    return View(customers);
         //}
 
+        // POST: Customers/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Telephone")] CustomersModel customer)
@@ -121,7 +122,7 @@ namespace CoreWebAppRazor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Cid,Name,Telephone")] Customers customers)
+        public async Task<IActionResult> Edit(int id, [Bind("Cid,Name,Telephone")] CustomersModel customers)
         {
             if (id != customers.Cid)
             {

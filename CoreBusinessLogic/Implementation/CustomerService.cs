@@ -34,16 +34,18 @@ namespace CoreBusinessLogic.Implementation
         }
 
 
-        public async Task UpdateCustomer(Customers customers)
+        public async Task UpdateCustomer(CustomersModel customersModel)
         {
+            Customers customers = this.mapper.Map<Customers>(customersModel);
             _CustomerRepository.Update(customers);
             await _CustomerRepository.SaveChangesAsync();
         }
 
-        public async Task<Customers> FindCustomer(int? Cid)
+        public async Task<CustomersModel> FindCustomer(int? Cid)
         {
-            var customer = await _CustomerRepository.FindAsync(Cid);
-            return customer;
+            var customerdb = await _CustomerRepository.FindAsync(Cid);
+            CustomersModel customersModel = this.mapper.Map<CustomersModel>(customerdb);
+            return customersModel;
         }
 
         public bool CustomersExists(int Cid)
