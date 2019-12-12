@@ -9,7 +9,7 @@
       <app-customertemplate formControlName="cmnCustomerFields"></app-customertemplate>
       <div class="form-group">
         <div class="text-center">
-          <button class="btn btn-primary mr-1">Create</button>
+          <button class="btn btn-primary mr-1" [disabled]="!registerForm.valid" >Create</button>
           <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
         </div>
 
