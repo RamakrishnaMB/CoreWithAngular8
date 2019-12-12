@@ -30,6 +30,7 @@ namespace CoreDataLayer.Interface
         Task SaveChangesAsync();
 
         Task<T> FindAsync(object id);
+
         IQueryable<T> Fetch(Expression<Func<T, bool>> filter = null);
         IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
         IList<T> GetList(Func<T, bool> where, Expression<Func<T, object>> orderBy, SortOrder sortOrder, params Expression<Func<T, object>>[] navigationProperties);
@@ -40,5 +41,6 @@ namespace CoreDataLayer.Interface
 
         void AddRange(List<T> entityList);
         void ExecSqlCommand(string sql, params object[] parameters);
-    }
+        T GetByID(object id);
+        }
 }

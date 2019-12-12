@@ -132,12 +132,11 @@ namespace CoreWebAppRazor.Controllers
             {
                 try
                 {
-                    _context.Update(customers);
-                    await _context.SaveChangesAsync();
+                    await _CustomerService.UpdateCustomer(customers);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomersExists(customers.Cid))
+                    if (!_CustomerService.CustomersExists(customers.Cid))
                     {
                         return NotFound();
                     }
@@ -180,9 +179,9 @@ namespace CoreWebAppRazor.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CustomersExists(int id)
-        {
-            return _context.Customers.Any(e => e.Cid == id);
-        }
+        //private bool CustomersExists(int id)
+        //{
+        //    return _context.Customers.Any(e => e.Cid == id);
+        //}
     }
 }

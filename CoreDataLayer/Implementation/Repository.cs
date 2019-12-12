@@ -14,9 +14,11 @@ namespace CoreDataLayer.Implementation
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly dbTestContext RepositoryContext;
+        internal DbSet<T> dbSet;
         public Repository(dbTestContext context)
         {
             RepositoryContext = context;
+            this.dbSet = context.Set<T>();
         }
 
         public IQueryable<T> FindAll()
@@ -109,7 +111,12 @@ namespace CoreDataLayer.Implementation
             var model = await this.RepositoryContext.FindAsync<T>(id);
             return model;
         }
-      
+
+        public T GetByID(object id)
+        {
+            return this.dbSet.Find(id);
+        }
+
         public void UpdateChanges(T entity)
         {
             var entry = this.RepositoryContext.Entry<T>(entity);
@@ -200,5 +207,6 @@ namespace CoreDataLayer.Implementation
             this.RepositoryContext.Database.ExecuteSqlCommand(sql, parameters);
         }
 
+      
     }
 }
