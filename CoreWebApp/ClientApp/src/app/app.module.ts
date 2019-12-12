@@ -15,6 +15,7 @@ import { AddCustomerComponent } from './customers/add-customer/add-customer.comp
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomertemplateComponent } from './customers/common/customertemplate.component';
+import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CustomertemplateComponent } from './customers/common/customertemplate.c
     FetchDataComponent,
     CustomersComponent,
     AddCustomerComponent,
-    CustomertemplateComponent
+    CustomertemplateComponent,
+    EditCustomerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

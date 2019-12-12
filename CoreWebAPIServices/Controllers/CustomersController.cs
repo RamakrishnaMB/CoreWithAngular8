@@ -43,5 +43,17 @@ namespace CoreWebAPIServices.Controllers
             return StatusCode((int)HttpStatusCode.Created, customer);
         }
 
+
+        [HttpPut]
+        [Route("UpdateCustomerAsync")]
+        public async Task<IActionResult> UpdateCustomerAsync([FromBody][Bind("Name,Telephone")] CustomersModel customer)
+        {
+            if (ModelState.IsValid)
+            {
+             //   await this.customerService.AddCustomer(customer);
+            }
+            return StatusCode((int)HttpStatusCode.OK, customer);
+        }
+
     }
 }
