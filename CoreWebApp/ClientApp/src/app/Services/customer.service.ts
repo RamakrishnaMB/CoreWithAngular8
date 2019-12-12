@@ -26,6 +26,10 @@ export class CustomerService {
     );
   }
 
+  GetCustomerById(Cid: number): Observable<Customers> {
+    return this.http.get<Customers>(this.BaseURL + '/api/Customers/GetCustomerbyIDAsync/' + Cid).pipe(catchError(this.handleError<Customers>('get customer error in service'))    
+    );
+  }
 
   AddCustomer(Customer: Customers): Observable<Customers> {
     return this.http.post<Customers>(this.BaseURL + 'api/customers/AddCustomerAsync', Customer, httpOptions).pipe(

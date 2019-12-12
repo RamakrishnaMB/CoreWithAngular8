@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using CoreBusinessLogic.Interface;
@@ -6,6 +7,7 @@ using CoreDataLayer.ModelsDB;
 using CoreWebAPIServices.Utilites;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Newtonsoft.Json.Linq;
 
 namespace CoreWebAPIServices.Controllers
 {
@@ -32,6 +34,17 @@ namespace CoreWebAPIServices.Controllers
             return StatusCode((int)HttpStatusCode.OK, customers);
         }
 
+
+        [HttpGet]
+        [Route("GetCustomerbyIDAsync")]
+        public async Task<IActionResult> GetCustomerbyIDAsync()
+        {
+            //int? Cid = ((JObject)jObject).GetValue("Cid", StringComparison.OrdinalIgnoreCase).Value<int>();
+            CustomersModel customers = await this.customerService.FindCustomer(1);
+            // APIMessage aPIMessage = new APIMessage { StatusCode = (int)HttpStatusCode.OK, StatusMessage = "Sucess great !!", Data = customers };
+            return StatusCode((int)HttpStatusCode.OK, customers);
+        }
+
         [HttpPost]
         [Route("AddCustomerAsync")]
         public async Task<IActionResult> AddCustomerAsync([FromBody][Bind("Name,Telephone")] CustomersModel customer)
@@ -50,7 +63,7 @@ namespace CoreWebAPIServices.Controllers
         {
             if (ModelState.IsValid)
             {
-             //   await this.customerService.AddCustomer(customer);
+                //   await this.customerService.AddCustomer(customer);
             }
             return StatusCode((int)HttpStatusCode.OK, customer);
         }
