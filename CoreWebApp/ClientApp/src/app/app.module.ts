@@ -38,7 +38,8 @@ import { EditCustomerComponent } from './customers/edit-customer/edit-customer.c
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'customer', component: CustomersComponent },
-      { path: 'addcustomer', component: AddCustomerComponent }
+      { path: 'addcustomer', component: AddCustomerComponent },
+      { path: 'editcustomer', component: EditCustomerComponent }
     ])
   ],
   providers: [CustomerService],
