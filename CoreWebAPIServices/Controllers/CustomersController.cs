@@ -17,6 +17,7 @@ namespace CoreWebAPIServices.Controllers
     {
         private readonly ICustomerService customerService;
 
+
         public CustomersController(ICustomerService customerService)
         {
             this.customerService = customerService;
@@ -36,11 +37,11 @@ namespace CoreWebAPIServices.Controllers
 
 
         [HttpGet]
-        [Route("GetCustomerbyIDAsync")]
-        public async Task<IActionResult> GetCustomerbyIDAsync()
+        [Route("GetCustomerbyIDAsync/{Cid}")]
+        public async Task<IActionResult> GetCustomerbyIDAsync(int Cid)
         {
-            //int? Cid = ((JObject)jObject).GetValue("Cid", StringComparison.OrdinalIgnoreCase).Value<int>();
-            CustomersModel customers = await this.customerService.FindCustomer(1);
+            //   int Cid = ((JObject)jObject).GetValue("Cid", StringComparison.OrdinalIgnoreCase).Value<int>();
+            CustomersModel customers = await this.customerService.FindCustomer(Cid);
             // APIMessage aPIMessage = new APIMessage { StatusCode = (int)HttpStatusCode.OK, StatusMessage = "Sucess great !!", Data = customers };
             return StatusCode((int)HttpStatusCode.OK, customers);
         }
