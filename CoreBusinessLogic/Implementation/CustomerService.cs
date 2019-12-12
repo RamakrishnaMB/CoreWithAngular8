@@ -32,5 +32,11 @@ namespace CoreBusinessLogic.Implementation
             _CustomerRepository.Add(customers);
             await _CustomerRepository.SaveChangesAsync();
         }
+
+        public async Task<Customers> FindCustomer(int? Cid)
+        {
+            var customer = await _CustomerRepository.FindAsync(Cid);
+            return customer;
+        }
     }
 }

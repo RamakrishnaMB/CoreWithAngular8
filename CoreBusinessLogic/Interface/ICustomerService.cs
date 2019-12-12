@@ -11,5 +11,6 @@ namespace CoreBusinessLogic.Interface
     {
         List<Customers> GetCustomers();
         Task AddCustomer(CustomersModel customersModel);
+        Task<Customers> FindCustomer(int? Cid);
     }
 }

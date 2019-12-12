@@ -104,6 +104,11 @@ namespace CoreDataLayer.Implementation
           await this.RepositoryContext.SaveChangesAsync();
         }
 
+        public async Task<T> FindAsync(object id)
+        {
+            var model = await this.RepositoryContext.FindAsync<T>(id);
+            return model;
+        }
       
         public void UpdateChanges(T entity)
         {

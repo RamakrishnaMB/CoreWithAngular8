@@ -28,6 +28,8 @@ namespace CoreDataLayer.Interface
         void SaveChanges();
 
         Task SaveChangesAsync();
+
+        Task<T> FindAsync(object id);
         IQueryable<T> Fetch(Expression<Func<T, bool>> filter = null);
         IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
         IList<T> GetList(Func<T, bool> where, Expression<Func<T, object>> orderBy, SortOrder sortOrder, params Expression<Func<T, object>>[] navigationProperties);

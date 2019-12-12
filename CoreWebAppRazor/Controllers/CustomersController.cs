@@ -94,14 +94,27 @@ namespace CoreWebAppRazor.Controllers
             {
                 return NotFound();
             }
-
-            var customers = await _context.Customers.FindAsync(id);
+            var customers = await _CustomerService.FindCustomer(id);
             if (customers == null)
             {
                 return NotFound();
             }
             return View(customers);
         }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var customers = await _context.Customers.FindAsync(id);
+        //    if (customers == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(customers);
+        //}
 
         // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
