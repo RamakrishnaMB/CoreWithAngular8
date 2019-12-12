@@ -27,14 +27,14 @@
   <div class="form-group">
     <label class="control-label">Telephone</label>
     <input type="text" formControlName="telephone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" />
-    <div *ngIf="f.telephone.errors" class="text-danger">
+    <div *ngIf="f.telephone.errors && f.telephone.touched" class="text-danger">
       <div *ngIf="f.telephone.errors.required">Telephone is required</div>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label">Email</label>
     <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-    <div *ngIf="f.email.errors" class="text-danger">
+    <div *ngIf="f.email.errors && f.email.touched" class="text-danger">
       <div *ngIf="f.email.errors.required">Email is required</div>
       <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
     </div>

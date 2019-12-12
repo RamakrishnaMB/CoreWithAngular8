@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 
 export class AddCustomerComponent implements OnInit {
   registerForm: FormGroup;
-  submitted = false;
   customer: Customers;
 
   constructor(private formBuilder: FormBuilder, private CustService: CustomerService, private _router: Router) {
@@ -27,11 +26,8 @@ export class AddCustomerComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
     debugger;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -57,7 +53,6 @@ export class AddCustomerComponent implements OnInit {
   }
 
   onReset() {
-    this.submitted = false;
     this.registerForm.reset();
   }
 
