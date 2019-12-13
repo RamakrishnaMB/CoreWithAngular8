@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-customer',
   templateUrl: './edit-customer.component.html',
-  styleUrls: ['./edit-customer.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./edit-customer.component.css']
 })
 export class EditCustomerComponent implements OnInit {
   editForm: FormGroup;
@@ -17,9 +16,30 @@ export class EditCustomerComponent implements OnInit {
 
   }
 
+
+  get f() {
+    return this.editForm.controls;
+  }
+
   ngOnInit() {
     this.editForm = this.formBuilder.group({
-      cmnCustomerFields: []
+      // title: ['', Validators.required],
+      cid:[''],
+      name: ['', Validators.required],
+      telephone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
+      //  acceptTerms: [false, Validators.requiredTrue]
+    });
+    debugger;
+
+
+    this.CustService.GetCustomerById(1006).subscribe(data => {
+      this.editForm.setValue({
+        name: data.name,
+        telephone: data.telephone,
+        email: data.email,
+        cid: data.cid
+      });
     });
   }
 
@@ -36,15 +56,15 @@ export class EditCustomerComponent implements OnInit {
     this.customer.name = this.editForm.value.cmnCustomerFields.name;
     this.customer.telephone = this.editForm.value.cmnCustomerFields.telephone;
     this.customer.email = this.editForm.value.cmnCustomerFields.email;
-    this.CustService.AddCustomer(this.customer).subscribe(
-      (data: Customers) => {
-        // log the employee object after the post is completed
-        console.log(data);
-        this.editForm.reset();
-        this._router.navigate(['/customer']);
-      },
-      (error: any) => { console.log(error); }
-    );
+    //this.CustService.AddCustomer(this.customer).subscribe(
+    //  (data: Customers) => {
+    //    // log the employee object after the post is completed
+    //    console.log(data);
+    //    this.editForm.reset();
+    //    this._router.navigate(['/customer']);
+    //  },
+    //  (error: any) => { console.log(error); }
+    //);
 
   }
 

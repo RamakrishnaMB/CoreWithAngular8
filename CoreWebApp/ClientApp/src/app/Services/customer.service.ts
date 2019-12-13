@@ -27,7 +27,7 @@ export class CustomerService {
   }
 
   GetCustomerById(Cid: number): Observable<Customers> {
-    return this.http.get<Customers>(this.BaseURL + '/api/Customers/GetCustomerbyIDAsync/' + Cid).pipe(catchError(this.handleError<Customers>('get customer error in service'))    
+    return this.http.get<Customers>(this.BaseURL + 'api/Customers/GetCustomerbyIDAsync/' + Cid).pipe(catchError(this.handleError<Customers>('get customer error in service'))    
     );
   }
 
