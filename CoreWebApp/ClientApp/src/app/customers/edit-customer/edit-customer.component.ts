@@ -16,28 +16,15 @@ export class EditCustomerComponent implements OnInit {
 
   }
 
-
-  get f() {
-    return this.editForm.controls;
-  }
-
   ngOnInit() {
     this.editForm = this.formBuilder.group({
-      // title: ['', Validators.required],
-      cid:[''],
-      name: ['', Validators.required],
-      telephone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]]
-      //  acceptTerms: [false, Validators.requiredTrue]
+      cid: [''],//note: cid is parent form also and inside the cmnCustomerFields, up in update only using cid from editForm not from cmnCustomerFields 
+      cmnCustomerFields: []
     });
     debugger;
-
-
     this.CustService.GetCustomerById(1006).subscribe(data => {
       this.editForm.setValue({
-        name: data.name,
-        telephone: data.telephone,
-        email: data.email,
+        cmnCustomerFields: data,
         cid: data.cid
       });
     });

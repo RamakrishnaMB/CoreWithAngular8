@@ -46,6 +46,7 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       // title: ['', Validators.required],
+      cid: [''],
       name: ['', Validators.required],
       telephone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
@@ -65,9 +66,7 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-
-
-
+   
   //ControlValueAccessor interface methods
   onChange: any = () => { };
   onTouched: any = () => { };
