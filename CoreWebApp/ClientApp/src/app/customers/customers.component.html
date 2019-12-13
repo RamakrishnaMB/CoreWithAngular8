@@ -29,11 +29,9 @@
         <td>
           {{customer.email}}
         </td>
-        <td>
-          <a [routerLink]='["/editcustomer"]'>
-            <span class='glyphicon glyphicon-pencil'></span> 
-          </a>
 
+        <td>
+          <a [routerLink]="'/editcustomer/'+customer.cid">  <span class='glyphicon glyphicon-pencil'></span></a>
         </td>
       </tr>
 

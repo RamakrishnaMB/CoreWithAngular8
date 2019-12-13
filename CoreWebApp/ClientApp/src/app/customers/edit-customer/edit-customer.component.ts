@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Customers } from '../Customer';
 import { CustomerService } from '../../Services/customer.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-customer',
@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 export class EditCustomerComponent implements OnInit {
   editForm: FormGroup;
   customer: Customers;
-  constructor(private formBuilder: FormBuilder, private CustService: CustomerService, private _router: Router) {
+
+  constructor(private formBuilder: FormBuilder, private CustService: CustomerService, private _router: Router, private _activatedRoute: ActivatedRoute) {
 
   }
 
@@ -22,7 +23,8 @@ export class EditCustomerComponent implements OnInit {
       cmnCustomerFields: []
     });
     debugger;
-    this.CustService.GetCustomerById(1006).subscribe(data => {
+    let Cid = Number(this._activatedRoute.snapshot.paramMap.get('cid'));
+    this.CustService.GetCustomerById(Cid).subscribe(data => {
       this.editForm.setValue({
         cmnCustomerFields: data,
         cid: data.cid
