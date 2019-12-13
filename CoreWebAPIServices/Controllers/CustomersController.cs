@@ -60,11 +60,11 @@ namespace CoreWebAPIServices.Controllers
 
         [HttpPut]
         [Route("UpdateCustomerAsync")]
-        public async Task<IActionResult> UpdateCustomerAsync([FromBody][Bind("Name,Telephone")] CustomersModel customer)
+        public async Task<IActionResult> UpdateCustomerAsync([FromBody][Bind("Name,Telephone,Email")] CustomersModel customer)
         {
             if (ModelState.IsValid)
             {
-                //   await this.customerService.AddCustomer(customer);
+                 await this.customerService.UpdateCustomer(customer);
             }
             return StatusCode((int)HttpStatusCode.OK, customer);
         }

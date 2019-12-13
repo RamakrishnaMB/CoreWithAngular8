@@ -27,7 +27,7 @@ export class CustomerService {
   }
 
   GetCustomerById(Cid: number): Observable<Customers> {
-    return this.http.get<Customers>(this.BaseURL + 'api/Customers/GetCustomerbyIDAsync/' + Cid).pipe(catchError(this.handleError<Customers>('get customer error in service'))    
+    return this.http.get<Customers>(this.BaseURL + 'api/Customers/GetCustomerbyIDAsync/' + Cid).pipe(catchError(this.handleError<Customers>('get customer error in service'))
     );
   }
 
@@ -38,6 +38,12 @@ export class CustomerService {
     );
   }
 
+  UpdateCustomer(customer: Customers): Observable<Customers> {
+    return this.http.put<Customers>(this.BaseURL + 'api/customers/UpdateCustomerAsync', customer, httpOptions).pipe(
+      tap((Customer: Customers) => console.log(`Customer updated successfully! his id = ${customer.cid}`)),
+      catchError(this.handleError<Customers>('UpdateCustomererror in service'))
+    );
+  }
 
 
 
