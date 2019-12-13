@@ -40,7 +40,7 @@ export class CustomerService {
 
   UpdateCustomer(customer: Customers): Observable<Customers> {
     return this.http.put<Customers>(this.BaseURL + 'api/customers/UpdateCustomerAsync', customer, httpOptions).pipe(
-      tap((Customer: Customers) => console.log(`Customer updated successfully! his id = ${customer.cid}`)),
+      tap((customer: Customers) => console.log(`Customer updated successfully! his id = ${customer.cid}`)),
       catchError(this.handleError<Customers>('UpdateCustomererror in service'))
     );
   }
