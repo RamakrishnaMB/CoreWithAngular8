@@ -16,6 +16,7 @@ import { AddCustomerComponent } from './customers/add-customer/add-customer.comp
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomertemplateComponent } from './customers/common/customertemplate.component';
 import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
+import { DeleteCustomerComponent } from './customers/delete-customer/delete-customer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EditCustomerComponent } from './customers/edit-customer/edit-customer.c
     CustomersComponent,
     AddCustomerComponent,
     CustomertemplateComponent,
-    EditCustomerComponent
+    EditCustomerComponent,
+    DeleteCustomerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -39,7 +41,8 @@ import { EditCustomerComponent } from './customers/edit-customer/edit-customer.c
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'customer', component: CustomersComponent },
       { path: 'addcustomer', component: AddCustomerComponent },
-      { path: 'editcustomer/:cid', component: EditCustomerComponent }
+      { path: 'editcustomer/:cid', component: EditCustomerComponent },
+      { path: 'deletecustomer/:cid', component: DeleteCustomerComponent }
     ])
   ],
   providers: [CustomerService],

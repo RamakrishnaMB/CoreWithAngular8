@@ -52,7 +52,6 @@ namespace CoreBusinessLogic.Implementation
         {
             var customerdb = await _CustomerRepository.FindAsync(Cid);
             _CustomerRepository.Delete(customerdb);
-
             await _CustomerRepository.SaveChangesAsync();
         }
 

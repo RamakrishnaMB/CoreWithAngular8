@@ -15,23 +15,26 @@
           Email
         </th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
 
       <tr *ngFor="let customer of lstCustomers">
         <td>
-          {{customer.name}}
+          {{customer?.name}}
         </td>
         <td>
-          {{customer.telephone}}
+          {{customer?.telephone}}
         </td>
         <td>
-          {{customer.email}}
+          {{customer?.email}}
         </td>
-
         <td>
           <a [routerLink]="'/editcustomer/'+customer.cid">  <span class='glyphicon glyphicon-pencil'></span></a>
+        </td>
+        <td>
+          <a [routerLink]="'/deletecustomer/'+customer.cid">  <span class='glyphicon glyphicon-remove'></span></a>
         </td>
       </tr>
 

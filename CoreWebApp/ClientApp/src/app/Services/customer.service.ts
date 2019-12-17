@@ -45,6 +45,11 @@ export class CustomerService {
     );
   }
 
+  DeleteCustomer(Cid: number): Observable<void> {
+    return this.http.delete<void>(this.BaseURL + 'api/Customers/DeleteCustomer/' + Cid, httpOptions).pipe(catchError(this.handleError<void>('get customer error in service'))
+    );
+  }
+
 
 
 
