@@ -42,9 +42,9 @@ namespace CoreWebAppRazor.Controllers
             {
                 return NotFound();
             }
-
-            var customers = await _context.Customers
-                .FirstOrDefaultAsync(m => m.Cid == id);
+            CustomersModel customers = await _CustomerService.FindCustomer(id);
+            //var customers = await _context.Customers
+            //    .FirstOrDefaultAsync(m => m.Cid == id);
             if (customers == null)
             {
                 return NotFound();
@@ -158,9 +158,9 @@ namespace CoreWebAppRazor.Controllers
             {
                 return NotFound();
             }
-
-            var customers = await _context.Customers
-                .FirstOrDefaultAsync(m => m.Cid == id);
+            CustomersModel customers = await _CustomerService.FindCustomer(id);
+            // var customers = await _context.Customers
+            //   .FirstOrDefaultAsync(m => m.Cid == id);
             if (customers == null)
             {
                 return NotFound();
@@ -174,9 +174,10 @@ namespace CoreWebAppRazor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customers = await _context.Customers.FindAsync(id);
-            _context.Customers.Remove(customers);
-            await _context.SaveChangesAsync();
+            await _CustomerService.DeleteConfirmedCustomer(id);
+            //   var customers = await _context.Customers.FindAsync(id);
+            //_context.Customers.Remove(customers);
+            //await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

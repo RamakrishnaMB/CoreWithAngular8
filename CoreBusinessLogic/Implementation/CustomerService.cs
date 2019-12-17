@@ -48,6 +48,15 @@ namespace CoreBusinessLogic.Implementation
             return customersModel;
         }
 
+        public async Task DeleteConfirmedCustomer(int Cid)
+        {
+            var customerdb = await _CustomerRepository.FindAsync(Cid);
+            _CustomerRepository.Delete(customerdb);
+
+            await _CustomerRepository.SaveChangesAsync();
+        }
+
+
         public bool CustomersExists(int Cid)
         {
             var Cust = _CustomerRepository.GetById(Cid);

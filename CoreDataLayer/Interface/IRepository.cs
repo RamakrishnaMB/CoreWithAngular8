@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using CoreDataLayer.ModelsDB;
 
 namespace CoreDataLayer.Interface
 {
@@ -42,5 +43,6 @@ namespace CoreDataLayer.Interface
         void AddRange(List<T> entityList);
         void ExecSqlCommand(string sql, params object[] parameters);
         T GetByID(object id);
-        }
+        
+    }
 }
