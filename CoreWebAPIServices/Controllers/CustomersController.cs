@@ -69,5 +69,15 @@ namespace CoreWebAPIServices.Controllers
             return StatusCode((int)HttpStatusCode.OK, customer);
         }
 
+        [HttpDelete]
+        [Route("DeleteCustomer/{Cid}")]
+        public async Task<IActionResult> DeleteCustomer(int Cid)
+        {
+            await this.customerService.DeleteConfirmedCustomer(Cid);
+
+            return StatusCode((int)HttpStatusCode.OK);
+        }
+
+
     }
 }
