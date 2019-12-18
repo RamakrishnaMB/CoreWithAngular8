@@ -1,0 +1,42 @@
+<h4>Contact Us</h4>
+<hr />
+<div class="row">
+  <div class="col-md-4">
+    <form [formGroup]="contactUsForm" (ngSubmit)="onSubmit">
+
+      <div class="form-group">
+
+        <div class="alert alert-info" role="alert">
+          <p>  Email sent!</p>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label class="control-label">Name</label>
+        <input formControlName="Name" type="text" class="form-control" [ngClass]="{ 'is-invalid':f.Name.errors }" />
+        <div *ngIf="f.Name.errors && f.Name.touched" class="text-danger">
+          <div *ngIf="f.Name.errors.required && f.Name.touched">Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Email</label>
+        <input formControlName="Email" type="text" class="form-control" [ngClass]="{ 'is-invalid':f.Email.errors }" />
+        <div *ngIf="f.Email.errors && f.Email.touched" class="text-danger">
+          <div *ngIf="f.Email.errors.required">Email is required</div>
+          <div *ngIf="f.Email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Message</label>
+        <textarea formControlName="Message" class="form-control" [ngClass]="{ 'is-invalid':f.Message.errors }"></textarea>
+        <div *ngIf="f.Message.errors && f.Message.touched" class="text-danger">
+          <div *ngIf="f.Message.errors.required && f.Message.touched">Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Send Your Message" [disabled]="!contactUsForm.valid" class="btn btn-primary" />
+      </div>
+
+    </form>
+  </div>
+</div>
