@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CustomertemplateComponent } from './customers/common/customertemplate.component';
 import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
 import { DeleteCustomerComponent } from './customers/delete-customer/delete-customer.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DeleteCustomerComponent } from './customers/delete-customer/delete-cust
     AddCustomerComponent,
     CustomertemplateComponent,
     EditCustomerComponent,
-    DeleteCustomerComponent
+    DeleteCustomerComponent,
+    ContactusComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,7 +44,8 @@ import { DeleteCustomerComponent } from './customers/delete-customer/delete-cust
       { path: 'customer', component: CustomersComponent },
       { path: 'addcustomer', component: AddCustomerComponent },
       { path: 'editcustomer/:cid', component: EditCustomerComponent },
-      { path: 'deletecustomer/:cid', component: DeleteCustomerComponent }
+      { path: 'deletecustomer/:cid', component: DeleteCustomerComponent },
+      { path: 'contactus', component: ContactusComponent }
     ])
   ],
   providers: [CustomerService],
