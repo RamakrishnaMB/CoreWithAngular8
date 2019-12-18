@@ -9,9 +9,5 @@ namespace Configuration.EmailConfig
         public string Name { get; set; }
         public string Address { get; set; }
 
-        public static implicit operator List<object>(EmailAddress v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
