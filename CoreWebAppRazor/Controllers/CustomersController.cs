@@ -30,21 +30,23 @@ namespace CoreWebAppRazor.Controllers
         public ActionResult Index()
         {
             var listCustomers = _CustomerService.GetCustomers();
-            EmailMessage emailMessage = new EmailMessage();
+            //EmailMessage emailMessage = new EmailMessage();
 
-            emailMessage.ToAddresses = new List<EmailAddress> { new EmailAddress
-            {
-                Name = "Ramakrishna",
-                Address = "ramakrishnamb@gmail.com"
-            } };
+            //emailMessage.ToAddresses = new List<EmailAddress> { new EmailAddress
+            //{
+            //    Name = "Ramakrishna",
+            //    Address = "ramakrishnamb@gmail.com"
+            //} };
 
-            emailMessage.FromAddresses = new List<EmailAddress> { new EmailAddress{
-                Address="ramakrishna.public@gmail.com"
-            }
-            };
-            emailMessage.Subject = "Test email from dot net core";
-            emailMessage.Content = "demo email body content with not content";
-            this.emailService.Send(emailMessage);
+            //emailMessage.FromAddresses = new List<EmailAddress> { new EmailAddress{
+            //    Address="ramakrishna.public@gmail.com"
+            //}
+            //};
+            //emailMessage.Subject = "Test email from dot net core";
+            //emailMessage.Content = "demo email body content with not content";
+            //this.emailService.Send(emailMessage);
+
+         //   List<EmailMessage> emailMsg = this.emailService.ReceiveEmail();
 
             return View(listCustomers);
         }
