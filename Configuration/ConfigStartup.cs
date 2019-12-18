@@ -10,7 +10,6 @@ using CoreDataLayer.Interface;
 using CoreDataLayer.ModelsDB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -29,6 +28,8 @@ namespace Configuration
             //email related services and configuration
             services.AddSingleton<IEmailConfiguration, EmailConfiguration>();
             services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IContactUsServices, ContactUsServices>();
+   
         }
     }
 }

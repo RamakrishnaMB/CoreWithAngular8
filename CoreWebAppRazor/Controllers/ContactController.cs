@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Configuration.EmailConfig;
-using Configuration.EmailConfig.Interface;
+﻿
+using CoreBusinessLogic.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
@@ -11,11 +7,12 @@ namespace CoreWebAppRazor.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly IEmailService emailService;
+ 
+        private readonly IContactUsServices contactUsServices;
 
-        public ContactController(IEmailService emailService)
+        public ContactController( IContactUsServices contactUsServices)
         {
-            this.emailService = emailService;
+            this.contactUsServices = contactUsServices;
         }
         [HttpGet]
         public IActionResult Index()
@@ -27,22 +24,7 @@ namespace CoreWebAppRazor.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(ContactUs contactUs)
         {
-
-            EmailMessage emailMessage = new EmailMessage
-            {
-                Subject = "Request for Contact details from " + contactUs.Name,
-                Content = contactUs.Message + "</br>" + "Name " + contactUs.Name + "</br>" + "Email " + contactUs.Email + "</br>" + "",
-                FromAddresses = new List<EmailAddress> { new EmailAddress
-                {
-                    Address="findingRK@gmail.com"
-                }
-                },
-                ToAddresses = new List<EmailAddress> { new EmailAddress
-               {
-                   Name = "RK",
-                   Address = "ramakrishnamb@gmail.com",
-               }}
-            };
+            this.contactUsServices.ContactUsSendEmail(contactUs);
             //this.emailService.Send(emailMessage);
             ViewBag.result = "We will contact you soon!";
             return View();
