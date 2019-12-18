@@ -9,6 +9,8 @@ using CoreDataLayer.ModelsDB;
 using CoreDataLayer.Interface;
 using Models;
 using CoreBusinessLogic.Interface;
+using Configuration.EmailConfig;
+using Configuration.EmailConfig.Interface;
 
 namespace CoreWebAppRazor.Controllers
 {
@@ -16,16 +18,34 @@ namespace CoreWebAppRazor.Controllers
     {
         private readonly dbTestContext _context;
         private readonly ICustomerService _CustomerService;
+        private readonly IEmailService emailService;
 
-        public CustomersController(dbTestContext context, ICustomerService customerService)
+        public CustomersController(dbTestContext context, ICustomerService customerService, IEmailService emailService)
         {
             _context = context;
             _CustomerService = customerService;
+            this.emailService = emailService;
         }
 
         public ActionResult Index()
         {
             var listCustomers = _CustomerService.GetCustomers();
+            EmailMessage emailMessage = new EmailMessage();
+
+            emailMessage.ToAddresses = new List<EmailAddress> { new EmailAddress
+            {
+                Name = "Ramakrishna",
+                Address = "ramakrishnamb@gmail.com"
+            } };
+
+            emailMessage.FromAddresses = new List<EmailAddress> { new EmailAddress{
+                Address="ramakrishna.public@gmail.com"
+            }
+            };
+            emailMessage.Subject = "Test email from dot net core";
+            emailMessage.Content = "demo email body content with not content";
+            this.emailService.Send(emailMessage);
+
             return View(listCustomers);
         }
 
