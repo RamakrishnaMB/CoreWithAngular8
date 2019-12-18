@@ -18,6 +18,7 @@ import { CustomertemplateComponent } from './customers/common/customertemplate.c
 import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
 import { DeleteCustomerComponent } from './customers/delete-customer/delete-customer.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { ContactusService } from './Services/contactus.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { ContactusComponent } from './contactus/contactus.component';
       { path: 'contactus', component: ContactusComponent }
     ])
   ],
-  providers: [CustomerService],
+  providers: [CustomerService, ContactusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
