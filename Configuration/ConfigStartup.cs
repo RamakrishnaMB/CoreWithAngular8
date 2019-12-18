@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Configuration.EmailConfig.Implementation;
+using Configuration.EmailConfig.Interface;
 using CoreBusinessLogic.AutoMapperSettings;
 using CoreBusinessLogic.Implementation;
 using CoreBusinessLogic.Interface;
@@ -8,6 +10,7 @@ using CoreDataLayer.Interface;
 using CoreDataLayer.ModelsDB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -23,6 +26,9 @@ namespace Configuration
             AutoMapperConfig.ConfigureAtApplicationStart();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICustomerService, CustomerService>();
+            //email related services and configuration
+            services.AddSingleton<IEmailConfiguration, EmailConfiguration>();
+            services.AddTransient<IEmailService, EmailService>();
         }
     }
 }
