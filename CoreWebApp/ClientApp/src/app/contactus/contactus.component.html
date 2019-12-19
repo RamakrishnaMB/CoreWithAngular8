@@ -2,7 +2,7 @@
 <hr />
 <div class="row">
   <div class="col-md-4">
-    <form [formGroup]="contactUsForm" (ngSubmit)="onSubmit">
+    <form [formGroup]="contactUsForm" (ngSubmit)="contactSubmit()">
 
       <div class="form-group">
 
@@ -13,30 +13,39 @@
       </div>
       <div class="form-group">
         <label class="control-label">Name</label>
-        <input formControlName="Name" type="text" class="form-control"  />
+        <input formControlName="Name" type="text" class="form-control" />
         <div *ngIf="f.Name.errors && f.Name.touched" class="text-danger">
-          <div *ngIf="f.Name.errors.required && f.Name.touched">Name is required</div>
+          <div *ngIf="f.Name.errors?.required && f.Name.touched">Name is required</div>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label">Email</label>
-        <input formControlName="Email" type="text" class="form-control"  />
+        <input formControlName="Email" type="text" class="form-control" />
         <div *ngIf="f.Email.errors && f.Email.touched" class="text-danger">
-          <div *ngIf="f.Email.errors.required">Email is required</div>
-          <div *ngIf="f.Email.errors.email">Email must be a valid email address</div>
+          <div *ngIf="f.Email.errors?.required">Email is required</div>
+          <div *ngIf="f.Email.errors?.email">Email must be a valid email address</div>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label">Message</label>
-        <textarea formControlName="Message" class="form-control" ></textarea>
+        <textarea formControlName="Message" class="form-control"></textarea>
         <div *ngIf="f.Message.errors && f.Message.touched" class="text-danger">
-          <div *ngIf="f.Name.errors.required && f.Message.touched">Name is required</div>
+          <div *ngIf="f.Message.errors?.required && f.Message.touched">Message is required</div>
+          <div *ngIf="f.Message.errors?.minlength">Minimum length 50 is required!</div>
         </div>
       </div>
+
       <div class="form-group">
-        <input type="submit" value="Send Your Message" [disabled]="!contactUsForm.valid" class="btn btn-primary" />
+        <button class="btn btn-primary mr-1" [disabled]="!contactUsForm.valid">Send Your Message</button>
       </div>
 
     </form>
   </div>
 </div>
+
+<p>
+  Form is {{contactUsForm.valid ? 'Valid' : 'Invalid'}}
+</p>
+<pre>
+{{contactUsForm.value | json}}
+</pre>

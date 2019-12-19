@@ -3,13 +3,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContactUs } from '../Models/ContactUs';
 import { ContactusService } from '../Services/contactus.service';
-import { error } from 'util';
+
 
 @Component({
   selector: 'app-contactus',
   templateUrl: './contactus.component.html',
   styleUrls: ['./contactus.component.css']
 })
+
+
 export class ContactusComponent implements OnInit {
   contactUsForm: FormGroup;
   contactUs: ContactUs;
@@ -19,15 +21,15 @@ export class ContactusComponent implements OnInit {
   ngOnInit() {
     this.contactUsForm = this.formBuilder.group({
       Name: ['', Validators.required],
-      Email: ['', Validators.email, Validators.required],
-      Message: ['', Validators.required, Validators.minLength(100)]
+      Email: ['', [Validators.email, Validators.required]],
+      Message: ['', [Validators.required, Validators.minLength(50)]]
     });
   }
 
   get f() {
     return this.contactUsForm.controls;
   }
-  onSubmit() {
+  contactSubmit() {
     debugger;
     if (this.contactUsForm.invalid) {
       return;
