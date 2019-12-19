@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Configuration.EmailConfig.Implementation
 {
@@ -20,7 +21,7 @@ namespace Configuration.EmailConfig.Implementation
             _emailConfiguration = emailConfiguration;
         }
 
-        public void Send(EmailMessage emailMessage)
+        public async Task Send(EmailMessage emailMessage)
         {
             var message = new MimeMessage();
             message.To.AddRange(emailMessage.ToAddresses.Select(x => new MailboxAddress(x.Name, x.Address)));
@@ -33,6 +34,7 @@ namespace Configuration.EmailConfig.Implementation
                 Text = emailMessage.Content
             };
             //Be careful that the SmtpClient class is the one from Mailkit not the framework!
+
             using (var emailClient = new SmtpClient())
             {
                 //The last parameter here is to use SSL (Which you should!)
@@ -40,7 +42,7 @@ namespace Configuration.EmailConfig.Implementation
                 //Remove any OAuth functionality as we won't be using it. 
                 emailClient.AuthenticationMechanisms.Remove("XOAUTH2");
                 emailClient.Authenticate(_emailConfiguration.SmtpUsername, _emailConfiguration.SmtpPassword);
-                emailClient.Send(message);
+                await emailClient.SendAsync(message);
                 emailClient.Disconnect(true);
             }
         }

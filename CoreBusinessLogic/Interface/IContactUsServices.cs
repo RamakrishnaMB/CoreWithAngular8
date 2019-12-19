@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CoreBusinessLogic.Interface
 {
     public interface IContactUsServices
     {
-        void ContactUsSendEmail(ContactUs contactUs);
+        Task ContactUsSendEmailAsync(ContactUs contactUs);
     }
 }

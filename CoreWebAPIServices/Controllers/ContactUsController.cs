@@ -19,11 +19,11 @@ namespace CoreWebAPIServices.Controllers
 
         [HttpPost]
         [Route("ContactUSEmail")]
-        public IActionResult AddContactUs([FromBody][Bind("Name,Email,Message")] ContactUs contactUs)
+        public async Task<IActionResult> AddContactUsAsync([FromBody][Bind("Name,Email,Message")] ContactUs contactUs)
         {
             if (ModelState.IsValid)
             {
-                this.contactUsServices.ContactUsSendEmail(contactUs);
+              await  this.contactUsServices.ContactUsSendEmailAsync(contactUs);
             }
             return StatusCode((int)HttpStatusCode.Created, contactUs);
         }

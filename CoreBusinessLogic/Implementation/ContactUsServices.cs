@@ -3,6 +3,7 @@ using Models;
 using System.Collections.Generic;
 using Configuration.EmailConfig.Interface;
 using Configuration.EmailConfig;
+using System.Threading.Tasks;
 
 namespace CoreBusinessLogic.Implementation
 {
@@ -14,7 +15,7 @@ namespace CoreBusinessLogic.Implementation
         {
             this.emailService = emailService;
         }
-        public void ContactUsSendEmail(ContactUs contactUs)
+        public async Task ContactUsSendEmailAsync(ContactUs contactUs)
         {
             EmailMessage emailMessage = new EmailMessage
             {
@@ -31,7 +32,7 @@ namespace CoreBusinessLogic.Implementation
                    Address = "ramakrishnamb@gmail.com",
                }}
             };
-            this.emailService.Send(emailMessage);
+            await this.emailService.Send(emailMessage);
         }
     }
 }

@@ -2,6 +2,7 @@
 using CoreBusinessLogic.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using System.Threading.Tasks;
 
 namespace CoreWebAppRazor.Controllers
 {
@@ -22,9 +23,9 @@ namespace CoreWebAppRazor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(ContactUs contactUs)
+        public async Task<IActionResult> Index(ContactUs contactUs)
         {
-            this.contactUsServices.ContactUsSendEmail(contactUs);
+            await this.contactUsServices.ContactUsSendEmailAsync(contactUs);
             //this.emailService.Send(emailMessage);
             ViewBag.result = "We will contact you soon!";
             return View();

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Configuration.EmailConfig.Interface
 {
     public interface IEmailService
     {
-        void Send(EmailMessage emailMessage);
+        Task Send(EmailMessage emailMessage);
         List<EmailMessage> ReceiveEmail(int maxCount = 10);
     }
 }
