@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContactUs } from '../Models/ContactUs';
 import { ContactusService } from '../Services/contactus.service';
+import { Subject } from 'rxjs';
 
 
 
@@ -47,5 +48,9 @@ export class ContactusComponent implements OnInit {
         this.contactUsForm.reset();
       }, (error: any) => { console.log(error) }
     );
+  }
+  private _success = new Subject<string>();
+  public changeSuccessMessage() {
+    this._success.next(`${new Date()} - Message successfully changed.`);
   }
 }

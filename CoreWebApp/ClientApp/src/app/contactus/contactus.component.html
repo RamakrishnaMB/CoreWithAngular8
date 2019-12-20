@@ -5,8 +5,10 @@
     <form [formGroup]="contactUsForm" (ngSubmit)="contactSubmit()">
 
       <div class="form-group">
-
-      
+        <!--<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>-->
+        <p>
+          <button class="btn btn-primary" (click)="changeSuccessMessage()">Change message</button>
+        </p>
       </div>
       <div class="form-group">
         <label class="control-label">Name</label>
