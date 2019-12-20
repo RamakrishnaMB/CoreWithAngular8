@@ -19,7 +19,7 @@ import { EditCustomerComponent } from './customers/edit-customer/edit-customer.c
 import { DeleteCustomerComponent } from './customers/delete-customer/delete-customer.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { ContactusService } from './Services/contactus.service';
-import { AlertService } from './_alert';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +39,6 @@ import { AlertService } from './_alert';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     ReactiveFormsModule,
-    AlertService,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
