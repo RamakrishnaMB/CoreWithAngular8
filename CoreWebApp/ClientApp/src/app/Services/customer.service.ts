@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Customers } from '../customers/Customer';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -49,19 +49,6 @@ export class CustomerService {
     return this.http.delete<void>(this.BaseURL + 'api/Customers/DeleteCustomer/' + Cid, httpOptions).pipe(catchError(this.handleError<void>('get customer error in service'))
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

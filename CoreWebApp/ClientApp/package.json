@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --extract-css",
-    "build": "ng build --extract-css",
+    "start": "ng serve",
+    "build": "ng build",
     "build:ssr": "npm run build -- --app=ssr --output-hashing=media",
     "test": "ng test",
     "lint": "ng lint",
@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "^0.803.21",
     "@angular/animations": "^8.2.14",
     "@angular/common": "^8.2.14",
     "@angular/compiler": "^8.2.14",
@@ -25,8 +26,9 @@
     "@angular/router": "^8.2.14",
     "@nguniversal/module-map-ngfactory-loader": "^8.2.6",
     "aspnet-prerendering": "^3.0.1",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "3.4.1",
     "core-js": "^3.4.8",
+    "jquery": "^3.4.1",
     "rxjs": "^6.5.3",
     "zone.js": "^0.10.2"
   },
@@ -48,7 +50,7 @@
     "protractor": "~5.4.2",
     "ts-node": "~8.5.4",
     "tslint": "~5.20.1",
-    "typescript": "^3.7.3"
+    "typescript": "^3.5.3"
   },
   "optionalDependencies": {
     "node-sass": "^4.13.0"
