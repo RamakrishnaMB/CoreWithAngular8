@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ContactUs } from '../Models/ContactUs';
 import { ContactusService } from '../Services/contactus.service';
 import { Subject } from 'rxjs';
+import { ToastrNotificationService } from '../Services/toastr-notification.service';
 
 
 
@@ -18,7 +19,7 @@ export class ContactusComponent implements OnInit {
   contactUsForm: FormGroup;
   contactUs: ContactUs;
 
-  constructor(private formBuilder: FormBuilder, private _router: Router, private contactUsService: ContactusService) { }
+  constructor(private formBuilder: FormBuilder, private _router: Router, private contactUsService: ContactusService, private _notificationservice: ToastrNotificationService) { }
 
   ngOnInit() {
     this.contactUsForm = this.formBuilder.group({
@@ -32,7 +33,7 @@ export class ContactusComponent implements OnInit {
     return this.contactUsForm.controls;
   }
   contactSubmit() {
-    
+
     debugger;
     if (this.contactUsForm.invalid) {
       return;
@@ -45,12 +46,13 @@ export class ContactusComponent implements OnInit {
     this.contactUsService.ContactUs(this.contactUs).subscribe(
       (data: ContactUs) => {
         console.log(data);
+        this._notificationservice.success("We Recived your request. Soon will get back to you.");
         this.contactUsForm.reset();
-      }, (error: any) => { console.log(error) }
+      }, (error: any) => {
+        console.log(error);
+        this._notificationservice.error(error);}
     );
   }
-  private _success = new Subject<string>();
-  public changeSuccessMessage() {
-    this._success.next(`${new Date()} - Message successfully changed.`);
-  }
+
+
 }

@@ -19,6 +19,8 @@ import { EditCustomerComponent } from './customers/edit-customer/edit-customer.c
 import { DeleteCustomerComponent } from './customers/delete-customer/delete-customer.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { ContactusService } from './Services/contactus.service';
+import { ToastrNotificationComponent } from './toastr-notification/toastr-notification.component';
+import { NotificationModule } from './toastr-notification/notification/notification.module';
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { ContactusService } from './Services/contactus.service';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     ReactiveFormsModule,
+    NotificationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

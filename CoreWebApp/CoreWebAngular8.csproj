@@ -34,15 +34,13 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\customers\Customer.ts" />
     <None Remove="ClientApp\src\app\Models\ContactUs.ts" />
+    <None Remove="ClientApp\src\app\Models\toastr-notification.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\customers\Customer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\ContactUs.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\Services\" />
+    <TypeScriptCompile Include="ClientApp\src\app\Models\toastr-notification.model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
