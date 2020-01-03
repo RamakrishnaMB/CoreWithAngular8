@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace CoreBusinessLogic.PdfConfig.Interface
 {
-    interface IGeneratePdf
+    public interface IGeneratePdf
     {
       FileContentResult GeneratePDFAsync();
     }

@@ -4,6 +4,8 @@ using Configuration.EmailConfig.Interface;
 using CoreBusinessLogic.AutoMapperSettings;
 using CoreBusinessLogic.Implementation;
 using CoreBusinessLogic.Interface;
+using CoreBusinessLogic.PdfConfig.Implementation;
+using CoreBusinessLogic.PdfConfig.Interface;
 using CoreDataLayer;
 using CoreDataLayer.Implementation;
 using CoreDataLayer.Interface;
@@ -29,7 +31,8 @@ namespace Configuration
             services.AddSingleton<IEmailConfiguration, EmailConfiguration>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IContactUsServices, ContactUsServices>();
-   
+            services.AddTransient<IGeneratePdf, GeneratePdf>();
+
         }
     }
 }
