@@ -15,6 +15,7 @@ namespace CoreBusinessLogic.PdfConfig.Implementation
             //Note: https://github.com/cp79shark/Shark.PdfConvert
             //install https://wkhtmltopdf.org/downloads.html
             //https://www.c-sharpcorner.com/article/Asp-Net-mvc-file-upload-and-download/
+            // and install Microsoft.Net.Http.Headers from nuget package , if the running project is class library like this.
 
             PdfConversionSettings config = new PdfConversionSettings
             {
