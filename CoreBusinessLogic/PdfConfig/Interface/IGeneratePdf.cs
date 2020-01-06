@@ -6,6 +6,6 @@ namespace CoreBusinessLogic.PdfConfig.Interface
 {
     public interface IGeneratePdf
     {
-      FileContentResult GeneratePDFAsync();
+        Task<FileContentResult> GeneratePDFAsync();
     }
 }

@@ -9,13 +9,14 @@ namespace CoreBusinessLogic.PdfConfig.Implementation
 {
     public class GeneratePdf : IGeneratePdf
     {
-        public FileContentResult GeneratePDFAsync()
+        public async Task<FileContentResult> GeneratePDFAsync()
         {
             //nuget install - Shark.PdfConvert ver 1.0.3
             //Note: https://github.com/cp79shark/Shark.PdfConvert
             //install https://wkhtmltopdf.org/downloads.html
             //https://www.c-sharpcorner.com/article/Asp-Net-mvc-file-upload-and-download/
             // and install Microsoft.Net.Http.Headers from nuget package , if the running project is class library like this.
+
 
             PdfConversionSettings config = new PdfConversionSettings
             {
@@ -26,7 +27,9 @@ namespace CoreBusinessLogic.PdfConfig.Implementation
                 //   OutputPath = @"C:\GeneratedPDF\test.pdf"
             };
             var memoryStream = new MemoryStream();
-            PdfConvert.Convert(config, memoryStream);
+
+            await Task.Run(() => PdfConvert.Convert(config, memoryStream));
+
             var fileName = "myfileName.pdf";
             var mimeType = "application/pdf";
             return new FileContentResult(memoryStream.ToArray(), mimeType)

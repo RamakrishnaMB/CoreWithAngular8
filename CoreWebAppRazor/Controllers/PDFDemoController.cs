@@ -17,15 +17,13 @@ namespace CoreWebAppRazor.Controllers
         }
         public IActionResult Index()
         {
-
-
             return View();
         }
 
 
-        public IActionResult Download()
+        public async Task<IActionResult> DownloadAsync()
         {
-            FileContentResult fileContentResult = this.generatPdf.GeneratePDFAsync();
+            FileContentResult fileContentResult = await this.generatPdf.GeneratePDFAsync();
             return fileContentResult;
         }
     }
