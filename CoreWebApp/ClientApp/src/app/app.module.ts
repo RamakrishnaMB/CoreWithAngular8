@@ -21,6 +21,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { ContactusService } from './Services/contactus.service';
 import { ToastrNotificationComponent } from './toastr-notification/toastr-notification.component';
 import { NotificationModule } from './toastr-notification/notification/notification.module';
+import { ReportsComponent } from './reports/reports.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { NotificationModule } from './toastr-notification/notification/notificat
     CustomertemplateComponent,
     EditCustomerComponent,
     DeleteCustomerComponent,
-    ContactusComponent
+    ContactusComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -50,7 +52,8 @@ import { NotificationModule } from './toastr-notification/notification/notificat
       { path: 'addcustomer', component: AddCustomerComponent },
       { path: 'editcustomer/:cid', component: EditCustomerComponent },
       { path: 'deletecustomer/:cid', component: DeleteCustomerComponent },
-      { path: 'contactus', component: ContactusComponent }
+      { path: 'contactus', component: ContactusComponent },
+      { path: 'reports', component: ReportsComponent }
     ])
   ],
   providers: [CustomerService, ContactusService],

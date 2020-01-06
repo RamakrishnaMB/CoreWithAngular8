@@ -45,7 +45,12 @@
             <span class='glyphicon glyphicon-leaf'></span> Contact Us
           </a>
         </li>
-           
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/reports"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-record'></span> Reports
+          </a>
+        </li>
+        
 
       </ul>
     </div>
