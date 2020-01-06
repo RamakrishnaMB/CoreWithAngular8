@@ -22,6 +22,7 @@ import { ContactusService } from './Services/contactus.service';
 import { ToastrNotificationComponent } from './toastr-notification/toastr-notification.component';
 import { NotificationModule } from './toastr-notification/notification/notification.module';
 import { ReportsComponent } from './reports/reports.component';
+import { ReportsService } from './Services/reports.service';
 
 
 @NgModule({
@@ -56,7 +57,7 @@ import { ReportsComponent } from './reports/reports.component';
       { path: 'reports', component: ReportsComponent }
     ])
   ],
-  providers: [CustomerService, ContactusService],
+  providers: [CustomerService, ContactusService, ReportsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
