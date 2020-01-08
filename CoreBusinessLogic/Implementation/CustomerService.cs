@@ -3,6 +3,7 @@ using CoreBusinessLogic.AutoMapperSettings;
 using CoreBusinessLogic.Interface;
 using CoreDataLayer.Interface;
 using CoreDataLayer.ModelsDB;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,5 +65,17 @@ namespace CoreBusinessLogic.Implementation
             else
                 return false;
         }
+
+        public ObjectResult UploadProfilePic()
+        {
+            var UploadServerController = new UploadServer.Controllers.UploadsController();
+            var TupleValues = UploadServerController.folderNameandPath();
+            var folderName = TupleValues.Item1;
+            var pathToSave = TupleValues.Item2;
+
+            return UploadServerController.Upload(folderName, pathToSave);
+        }
+
+
     }
 }

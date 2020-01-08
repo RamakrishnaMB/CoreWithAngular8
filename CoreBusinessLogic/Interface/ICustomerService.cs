@@ -1,4 +1,5 @@
 ﻿using CoreDataLayer.ModelsDB;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,7 @@ namespace CoreBusinessLogic.Interface
         
         bool CustomersExists(int CId);
         Task DeleteConfirmedCustomer(int id);
+
+        ObjectResult UploadProfilePic();
     }
 }
