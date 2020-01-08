@@ -25,6 +25,8 @@ namespace CoreDataLayer.ModelsDB
         {
             if (!optionsBuilder.IsConfigured)
             {
+                //run this in PackageManagerConsole and select defult project to = CoreDataLayer
+                //Scaffold-DbContext "Server=ES-SYS-764\SQL2017;Database=dbTest;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir ModelsDB
                 optionsBuilder.UseSqlServer(ConnectionString.GetConnectionString);
             }
         }
@@ -66,6 +68,8 @@ namespace CoreDataLayer.ModelsDB
                 entity.Property(e => e.Email).HasMaxLength(20);
 
                 entity.Property(e => e.Name).HasMaxLength(20);
+
+                entity.Property(e => e.ProfilePic).HasMaxLength(300);
 
                 entity.Property(e => e.Telephone).HasMaxLength(20);
             });

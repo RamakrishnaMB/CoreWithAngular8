@@ -10,5 +10,6 @@ namespace Models
         [Required]
         public string Telephone { get; set; }
         public string Email { get; set; }
+        public string ProfilePic { get; set; }
     }
 }
