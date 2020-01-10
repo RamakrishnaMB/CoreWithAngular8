@@ -23,6 +23,7 @@ import { ToastrNotificationComponent } from './toastr-notification/toastr-notifi
 import { NotificationModule } from './toastr-notification/notification/notification.module';
 import { ReportsComponent } from './reports/reports.component';
 import { ReportsService } from './Services/reports.service';
+import { UploadComponent } from './upload/upload.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ReportsService } from './Services/reports.service';
     EditCustomerComponent,
     DeleteCustomerComponent,
     ContactusComponent,
-    ReportsComponent
+    ReportsComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

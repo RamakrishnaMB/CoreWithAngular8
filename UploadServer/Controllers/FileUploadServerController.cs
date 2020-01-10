@@ -3,37 +3,26 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace UploadServer.Controllers
 {
-    public class UploadsController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class FileUploadServerController : ControllerBase
     {
-        private readonly FilePathUploadServer _path;
-
-        public UploadsController(IOptions<FilePathUploadServer> filePathUploadServer)
-        {
-            _path = filePathUploadServer.Value;
-        }
-        //public Tuple<string, string> folderNameandPath()
-        //{
-        //    var folderName = Path.Combine("UploadStaticFiles", "CustomerProfilePic");
-        //    var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-        //    return new Tuple<string, string>(folderName, pathToSave);
-        //}
-
-        // GET: /<controller>/
-        public ObjectResult Upload(IFormFile file)
+        [HttpPost]
+        [Route("upload")]
+        public IActionResult Upload(IFormFile file)
         {
             //https://code-maze.com/upload-files-dot-net-core-angular/
             try
             {
-                var test = _path;
+                var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Substring(0, Assembly.GetEntryAssembly().Location.IndexOf("bin\\")));
+
                 var folderName = Path.Combine("UploadStaticFiles", "CustomerProfilePic");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 if (file.Length > 0)
@@ -58,6 +47,15 @@ namespace UploadServer.Controllers
             {
                 return StatusCode(500, "Internal server error");
             }
+        }
+
+
+
+        [HttpGet]
+        [Route("rktest")]
+        public ActionResult<IEnumerable<string>> Get()
+        {
+            return new string[] { "up1", "value2" };
         }
     }
 }

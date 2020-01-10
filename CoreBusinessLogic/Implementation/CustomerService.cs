@@ -3,10 +3,17 @@ using CoreBusinessLogic.AutoMapperSettings;
 using CoreBusinessLogic.Interface;
 using CoreDataLayer.Interface;
 using CoreDataLayer.ModelsDB;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Org.BouncyCastle.Asn1.Ocsp;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace CoreBusinessLogic.Implementation
@@ -14,6 +21,7 @@ namespace CoreBusinessLogic.Implementation
     public class CustomerService : ICustomerService
     {
         public IRepository<Customers> _CustomerRepository;
+        
         private readonly IMapper mapper;
 
         public CustomerService(IRepository<Customers> repository)
@@ -66,16 +74,32 @@ namespace CoreBusinessLogic.Implementation
                 return false;
         }
 
-        public ObjectResult UploadProfilePic()
+        public async Task<HttpResponseMessage> UploadProfilePicAsync(IFormFile fromFile)
         {
-            var UploadServerController = new UploadServer.Controllers.UploadsController();
-            var TupleValues = UploadServerController.folderNameandPath();
-            var folderName = TupleValues.Item1;
-            var pathToSave = TupleValues.Item2;
 
-            return UploadServerController.Upload(folderName, pathToSave);
+            string Baseurl = "http://localhost:65363/";
+            using (var client = new HttpClient())
+            {
+                //Passing service base url  
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                
+                byte[] data;
+                using (var br = new BinaryReader(fromFile.OpenReadStream()))
+                    data = br.ReadBytes((int)fromFile.OpenReadStream().Length);
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                MultipartFormDataContent multiContent = new MultipartFormDataContent
+                {
+                    { bytes, "file", fromFile.FileName }
+                };
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+               // HttpResponseMessage Res = await client.PostAsync("api/Employee/GetAllEmployees", multiContent);
+                var result = await client.PostAsync("api/FileUploadServer/upload", multiContent);
+                return result;
+            }
         }
-
-
     }
 }
