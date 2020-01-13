@@ -22,7 +22,7 @@ namespace CoreWebAPIServices.Controllers
 
         [HttpPost, DisableRequestSizeLimit]
         [Route("Upload")]
-        public async Task<HttpResponseMessage> UploadAsync()
+        public async Task<IActionResult> UploadAsync()
         {
             var file = Request.Form.Files[0];
             return await this.customerService.UploadProfilePicAsync(file);

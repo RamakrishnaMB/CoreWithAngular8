@@ -20,6 +20,6 @@ namespace CoreBusinessLogic.Interface
         bool CustomersExists(int CId);
         Task DeleteConfirmedCustomer(int id);
 
-        Task<HttpResponseMessage> UploadProfilePicAsync(IFormFile fromFile);
+        Task<IActionResult> UploadProfilePicAsync(IFormFile fromFile);
     }
 }

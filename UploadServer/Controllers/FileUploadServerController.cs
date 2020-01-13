@@ -36,7 +36,7 @@ namespace UploadServer.Controllers
                         file.CopyTo(stream);
                     }
 
-                    return Ok(new { dbPath });
+                    return Ok(new { dbPath });  
                 }
                 else
                 {

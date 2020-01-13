@@ -21,7 +21,7 @@ namespace CoreBusinessLogic.Implementation
     public class CustomerService : ICustomerService
     {
         public IRepository<Customers> _CustomerRepository;
-        
+
         private readonly IMapper mapper;
 
         public CustomerService(IRepository<Customers> repository)
@@ -74,9 +74,9 @@ namespace CoreBusinessLogic.Implementation
                 return false;
         }
 
-        public async Task<HttpResponseMessage> UploadProfilePicAsync(IFormFile fromFile)
+        public async Task<IActionResult> UploadProfilePicAsync(IFormFile fromFile)
         {
-
+            //this is Uploadserver webapi url
             string Baseurl = "http://localhost:65363/";
             using (var client = new HttpClient())
             {
@@ -85,10 +85,12 @@ namespace CoreBusinessLogic.Implementation
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format  
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                
+
                 byte[] data;
                 using (var br = new BinaryReader(fromFile.OpenReadStream()))
+                {
                     data = br.ReadBytes((int)fromFile.OpenReadStream().Length);
+                }
                 ByteArrayContent bytes = new ByteArrayContent(data);
                 MultipartFormDataContent multiContent = new MultipartFormDataContent
                 {
@@ -96,9 +98,14 @@ namespace CoreBusinessLogic.Implementation
                 };
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-               // HttpResponseMessage Res = await client.PostAsync("api/Employee/GetAllEmployees", multiContent);
                 var result = await client.PostAsync("api/FileUploadServer/upload", multiContent);
-                return result;
+                //    return result;
+                ActionResult x = new ContentResult()
+                {
+                    Content = result.Content.ReadAsStringAsync().Result,
+                    ContentType = result.Content.Headers.ContentType.MediaType
+                };
+                return x;
             }
         }
     }
