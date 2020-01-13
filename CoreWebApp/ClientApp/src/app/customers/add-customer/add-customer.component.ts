@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class AddCustomerComponent implements OnInit {
   registerForm: FormGroup;
   customer: Customers;
-  public response: { 'dbPath': '' };
+  public response: { 'dbPath': '', 'url': '' };
 
   constructor(private formBuilder: FormBuilder, private CustService: CustomerService, private _router: Router) {
 
@@ -68,6 +68,7 @@ export class AddCustomerComponent implements OnInit {
 
     debugger;
     alert(this.response.dbPath);
+    alert(this.response.url);
   }
 
 }

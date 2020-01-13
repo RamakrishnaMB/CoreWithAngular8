@@ -31,12 +31,22 @@ namespace UploadServer.Controllers
                     var fullPath = Path.Combine(pathToSave, fileName);
                     var dbPath = Path.Combine(folderName, fileName);
 
+                    bool addPath = true; bool addQuery = true;
+                    var uriBuilder = new UriBuilder
+                    {
+                        Scheme = Request.Scheme,
+                        Host = Request.Host.Host,
+                        Port = Request.Host.Port.GetValueOrDefault(80),
+                        Path = addPath ? Request.Path.ToString() : default(string),
+                        Query = addQuery ? Request.QueryString.ToString() : default(string)
+                    };
+                    var url = uriBuilder.Uri.ToString();
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
 
-                    return Ok(new { dbPath });  
+                    return Ok(new { dbPath, url });
                 }
                 else
                 {
