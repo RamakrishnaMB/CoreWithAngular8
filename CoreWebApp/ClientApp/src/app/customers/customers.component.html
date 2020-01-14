@@ -1,5 +1,5 @@
 <p>
-  customers works!
+  Customers List
 </p>
 <div>
   <table class="table">
@@ -14,12 +14,15 @@
         <th>
           Email
         </th>
+        <th>
+          Profile Picture
+        </th>
         <th></th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-
+      <!--{{ lstCustomers | json }}-->
       <tr *ngFor="let customer of lstCustomers">
         <td>
           {{customer?.name}}
@@ -29,6 +32,9 @@
         </td>
         <td>
           {{customer?.email}}
+        </td>
+        <td>
+          <img [src]="GetProfileImgPath(customer?.profilePic)" alt="No Picture Found" style="width:60px; height:60px;">
         </td>
         <td>
           <a [routerLink]="'/editcustomer/'+customer.cid">  <span class='glyphicon glyphicon-pencil'></span></a>

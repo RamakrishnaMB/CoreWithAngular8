@@ -21,5 +21,8 @@ export class CustomersComponent implements OnInit {
     this.CustService.GetCustomers().subscribe(cust => this.lstCustomers = cust);
   }
 
+  public GetProfileImgPath = (serverPath: string) => {
+    return `http://localhost:65363/${serverPath}`;
+  }
 
 }
