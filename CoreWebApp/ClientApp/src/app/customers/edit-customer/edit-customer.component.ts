@@ -23,7 +23,6 @@ export class EditCustomerComponent implements OnInit {
       cmnCustomerFields: [],
       profilePicsrc:['']
     });
-    debugger;
     let Cid = Number(this._activatedRoute.snapshot.paramMap.get('cid'));
     this.CustService.GetCustomerById(Cid).subscribe(data => {
       this.editForm.setValue({

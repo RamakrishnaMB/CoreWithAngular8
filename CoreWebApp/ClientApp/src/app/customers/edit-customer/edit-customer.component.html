@@ -8,13 +8,10 @@
       <app-customertemplate formControlName="cmnCustomerFields"></app-customertemplate>
 
       <div class="form-group">
-        {{profilePicsrc | json}}
-        <label class="control-label">Profile Picture</label>
-        <img [src]="GetProfileImgPath(profilePicsrc)"  alt="No Picture Found" style="width:60px; height:60px;">
-
+        <label class="control-label">Profile Picture</label> : 
+        <img [src]="GetProfileImgPath(editForm.value.profilePicsrc)" alt="No Picture Found" style="width:60px; height:60px;">
       </div>
-      test
-
+      
       <div class="form-group">
         <div class="text-center">
           <button class="btn btn-primary mr-1" [disabled]="!editForm.valid">Edit Customer</button>
