@@ -3,7 +3,7 @@ export class Customers {
   public name: string;
   public telephone: string;
   public email: string;
-  public profilepic: string;
+  public profilePic: string;
 }
 
 //copy from class to typescript works after installing visual studio extension - TypescriptSyntexPaste

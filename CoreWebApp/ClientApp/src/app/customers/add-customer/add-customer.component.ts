@@ -41,7 +41,7 @@ export class AddCustomerComponent implements OnInit {
     this.customer.name = this.registerForm.value.cmnCustomerFields.name;
     this.customer.telephone = this.registerForm.value.cmnCustomerFields.telephone;
     this.customer.email = this.registerForm.value.cmnCustomerFields.email;
-    this.customer.profilepic = this.response.dbPath;
+    this.customer.profilePic = this.response.dbPath;
     this.CustService.AddCustomer(this.customer).subscribe(
       (data: Customers) => {
         // log the employee object after the post is completed

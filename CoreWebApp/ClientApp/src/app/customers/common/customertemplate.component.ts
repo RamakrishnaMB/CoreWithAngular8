@@ -49,7 +49,8 @@ export class CustomertemplateComponent implements ControlValueAccessor, OnDestro
       cid: [''],
       name: ['', Validators.required],
       telephone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      profilePic:['']
       //  acceptTerms: [false, Validators.requiredTrue]
     });
 

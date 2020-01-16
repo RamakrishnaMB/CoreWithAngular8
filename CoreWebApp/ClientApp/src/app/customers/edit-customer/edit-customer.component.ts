@@ -20,16 +20,22 @@ export class EditCustomerComponent implements OnInit {
   ngOnInit() {
     this.editForm = this.formBuilder.group({
       cid: [''],//note: cid is parent form also and inside the cmnCustomerFields, up in update only using cid from editForm not from cmnCustomerFields 
-      cmnCustomerFields: []
+      cmnCustomerFields: [],
+      profilePicsrc:['']
     });
     debugger;
     let Cid = Number(this._activatedRoute.snapshot.paramMap.get('cid'));
     this.CustService.GetCustomerById(Cid).subscribe(data => {
       this.editForm.setValue({
         cmnCustomerFields: data,
-        cid: data.cid
+        cid: data.cid,
+        profilePicsrc: data.profilePic
       });
     });
+  }
+
+  public GetProfileImgPath = (serverPath: string) => {
+    return `http://localhost:65363/${serverPath}`;
   }
 
   onSubmit() {
