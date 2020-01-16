@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditCustomerComponent implements OnInit {
   editForm: FormGroup;
   customer: Customers;
+  public response: { 'dbPath': '', 'url': '' };
 
   constructor(private formBuilder: FormBuilder, private CustService: CustomerService, private _router: Router, private _activatedRoute: ActivatedRoute) {
 
@@ -51,6 +52,7 @@ export class EditCustomerComponent implements OnInit {
     this.customer.name = this.editForm.value.cmnCustomerFields.name;
     this.customer.telephone = this.editForm.value.cmnCustomerFields.telephone;
     this.customer.email = this.editForm.value.cmnCustomerFields.email;
+    this.customer.profilePic = this.response.dbPath;
     this.CustService.UpdateCustomer(this.customer).subscribe(
       (data: Customers) => {
         // log the employee object after the post is completed
@@ -67,4 +69,7 @@ export class EditCustomerComponent implements OnInit {
     this.editForm.reset();
   }
 
+  public uploadFinished = (event) => {
+    this.response = event;
+  }
 }
