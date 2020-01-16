@@ -10,13 +10,17 @@
       <div *ngIf="editForm.value.profilePicsrc" class="form-group">
         <label class="control-label">Profile Picture</label> :
         <img [src]="GetProfileImgPath(editForm.value.profilePicsrc)" alt="No Picture Found" style="width:60px; height:60px;">
+
+        <a href="#" (click)="changeProfilepic()">
+          <span class="glyphicon glyphicon-user"></span>
+        </a>
+        <a href="#">
+          <span class="glyphicon glyphicon-remove-sign"></span>
+        </a>
       </div>
-      <div *ngIf="!editForm.value.profilePicsrc" class="form-group">
-
-
+      <div *ngIf="isChangeprofilepic">
+        <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
       </div>
-      <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
-
       <div class="form-group">
         <div class="text-center">
           <button class="btn btn-primary mr-1" [disabled]="!editForm.valid">Edit Customer</button>

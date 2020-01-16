@@ -13,6 +13,8 @@ export class EditCustomerComponent implements OnInit {
   editForm: FormGroup;
   customer: Customers;
   public response: { 'dbPath': '', 'url': '' };
+  isDeleteProfilepic: boolean = false;
+  isChangeprofilepic = false;
 
   constructor(private formBuilder: FormBuilder, private CustService: CustomerService, private _router: Router, private _activatedRoute: ActivatedRoute) {
 
@@ -22,7 +24,7 @@ export class EditCustomerComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       cid: [''],//note: cid is parent form also and inside the cmnCustomerFields, up in update only using cid from editForm not from cmnCustomerFields 
       cmnCustomerFields: [],
-      profilePicsrc:['']
+      profilePicsrc: ['']
     });
     let Cid = Number(this._activatedRoute.snapshot.paramMap.get('cid'));
     this.CustService.GetCustomerById(Cid).subscribe(data => {
@@ -63,6 +65,14 @@ export class EditCustomerComponent implements OnInit {
       (error: any) => { console.log(error); }
     );
 
+  }
+
+
+  changeProfilepic() {
+
+    this.isChangeprofilepic = true;
+    alert(this.isChangeprofilepic);
+    return false;
   }
 
   onReset() {
