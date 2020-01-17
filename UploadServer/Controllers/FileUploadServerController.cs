@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -62,11 +63,12 @@ namespace UploadServer.Controllers
 
         [HttpPost]
         [Route("DeleteProfilePic")]
-        public IActionResult deleteFile(string filePath)
+        public IActionResult DeleteFile(string filePath)
         {
             //https://www.c-sharpcorner.com/article/calling-web-api-using-httpclient/
             string msg = "File deleted successfully";
-            try {
+            try
+            {
                 var isDeleted = RemoveFileFromServer(filePath);
                 return Ok(new { msg });
             }
@@ -88,7 +90,7 @@ namespace UploadServer.Controllers
             }
             catch (Exception e)
             {
-                //Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.Message);
             }
             return false;
         }
