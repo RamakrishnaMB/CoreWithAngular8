@@ -10,6 +10,7 @@ using Models;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -122,9 +123,9 @@ namespace CoreBusinessLogic.Implementation
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format  
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+                
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                var result =await client.PostAsync("api/FileUploadServer/DeleteProfilePic", new StringContent(FilePath));
+                var result = await client.PostAsync("api/FileUploadServer/DeleteProfilePic?filePath=" + FilePath, null);
                 //    return result;
                 ActionResult x = new ContentResult()
                 {
