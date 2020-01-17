@@ -75,6 +75,12 @@ export class EditCustomerComponent implements OnInit {
     return false;
   }
 
+  deleteProfilepic() {
+
+
+  }
+
+
   onReset() {
     this.editForm.reset();
   }

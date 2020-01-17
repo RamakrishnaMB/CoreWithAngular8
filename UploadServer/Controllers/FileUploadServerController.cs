@@ -60,6 +60,40 @@ namespace UploadServer.Controllers
         }
 
 
+        [HttpPost]
+        [Route("DeleteProfilePic")]
+        public IActionResult deleteFile(string filePath)
+        {
+            //https://www.c-sharpcorner.com/article/calling-web-api-using-httpclient/
+            string msg = "File deleted successfully";
+            try {
+                var isDeleted = RemoveFileFromServer(filePath);
+                return Ok(new { msg });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.ToString());
+            }
+        }
+
+        private bool RemoveFileFromServer(string path)
+        {
+            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), path);
+            if (!System.IO.File.Exists(fullPath)) return false;
+
+            try //Maybe error could happen like Access denied or Presses Already User used
+            {
+                System.IO.File.Delete(fullPath);
+                return true;
+            }
+            catch (Exception e)
+            {
+                //Debug.WriteLine(e.Message);
+            }
+            return false;
+        }
+
+
 
         [HttpGet]
         [Route("rktest")]

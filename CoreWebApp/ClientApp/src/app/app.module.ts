@@ -24,6 +24,7 @@ import { NotificationModule } from './toastr-notification/notification/notificat
 import { ReportsComponent } from './reports/reports.component';
 import { ReportsService } from './Services/reports.service';
 import { UploadComponent } from './upload/upload.component';
+import { FileService } from './Services/file.service';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { UploadComponent } from './upload/upload.component';
       { path: 'reports', component: ReportsComponent }
     ])
   ],
-  providers: [CustomerService, ContactusService, ReportsService],
+  providers: [CustomerService, ContactusService, ReportsService, FileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
