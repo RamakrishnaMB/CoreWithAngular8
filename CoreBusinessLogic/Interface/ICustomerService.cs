@@ -21,5 +21,7 @@ namespace CoreBusinessLogic.Interface
         Task DeleteConfirmedCustomer(int id);
 
         Task<IActionResult> UploadProfilePicAsync(IFormFile fromFile);
+
+        Task<IActionResult> DeleteProfilePicAsync(string FilePath);
     }
 }

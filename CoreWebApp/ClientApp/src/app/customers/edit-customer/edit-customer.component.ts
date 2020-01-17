@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Customers } from '../Customer';
 import { CustomerService } from '../../Services/customer.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FileService } from '../../Services/file.service';
 
 @Component({
   selector: 'app-edit-customer',
@@ -16,7 +17,7 @@ export class EditCustomerComponent implements OnInit {
   isDeleteProfilepic: boolean = false;
   isChangeprofilepic = false;
 
-  constructor(private formBuilder: FormBuilder, private CustService: CustomerService, private _router: Router, private _activatedRoute: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private CustService: CustomerService, private _router: Router, private _activatedRoute: ActivatedRoute, private fileService: FileService) {
 
   }
 
@@ -75,8 +76,15 @@ export class EditCustomerComponent implements OnInit {
     return false;
   }
 
-  deleteProfilepic() {
-
+  deleteProfilepic(path: string) {
+    debugger;
+    this.fileService.DeleteProfilePic(path).subscribe(
+      (data: any) => {
+        // log the employee object after the post is completed
+        console.log(data);
+      },
+      (error: any) => { console.log(error); }
+    );
 
   }
 

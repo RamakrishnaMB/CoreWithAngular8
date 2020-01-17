@@ -1,7 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpHeaders, HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpEvent, HttpRequest, HttpParams } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +28,29 @@ export class FileService {
           return of(null);
         })
       );
+  }
+
+
+  DeleteProfilePic(filePath: string): Observable<any> {
+    debugger;
+
+    //let params: HttpParams = new HttpParams();
+    //params = params.set('FilePath', filePath);
+    //const path = {
+    //  FilePath: filePath
+    //};
+    //var body = JSON.stringify({ FilePath: filePath });
+    //const params = new HttpParams()
+    //  .set('FilePath', filePath)
+
+    return this.http.post(this.BaseURL + 'api/UploadFiles/deleteProfilePic?FilePath=' + filePath, '', httpOptions).pipe(
+      tap(_ => console.log("DeleteProfilePic called !!!")),
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+    );
+
   }
 
 }

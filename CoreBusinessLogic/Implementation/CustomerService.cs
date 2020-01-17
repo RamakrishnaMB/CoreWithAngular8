@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CoreBusinessLogic.Implementation
@@ -99,6 +101,30 @@ namespace CoreBusinessLogic.Implementation
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
                 var result = await client.PostAsync("api/FileUploadServer/upload", multiContent);
+                //    return result;
+                ActionResult x = new ContentResult()
+                {
+                    Content = result.Content.ReadAsStringAsync().Result,
+                    ContentType = result.Content.Headers.ContentType.MediaType
+                };
+                return x;
+            }
+        }
+
+        public async Task<IActionResult> DeleteProfilePicAsync(string FilePath)
+        {
+            //this is Uploadserver webapi url
+            string Baseurl = "http://localhost:65363/";
+            using (var client = new HttpClient())
+            {
+                //Passing service base url  
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                var result =await client.PostAsync("api/FileUploadServer/DeleteProfilePic", new StringContent(FilePath));
                 //    return result;
                 ActionResult x = new ContentResult()
                 {

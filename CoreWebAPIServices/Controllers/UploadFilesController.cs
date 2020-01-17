@@ -27,5 +27,13 @@ namespace CoreWebAPIServices.Controllers
             var file = Request.Form.Files[0];
             return await this.customerService.UploadProfilePicAsync(file);
         }
+
+
+        [HttpPost]
+        [Route("deleteProfilePic")]
+        public async Task<IActionResult> DeleteProfilePicAsync(string FilePath)
+        {
+            return await this.customerService.DeleteProfilePicAsync(FilePath);
+        }
     }
 }
