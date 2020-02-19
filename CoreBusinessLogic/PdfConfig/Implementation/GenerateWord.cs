@@ -12,7 +12,7 @@ using Document = DocumentFormat.OpenXml.Wordprocessing.Document;
 
 namespace CoreBusinessLogic.PdfConfig.Implementation
 {
-    class GenerateWord : IGenerateWord
+    public class GenerateWord : IGenerateWord
     {
         public async Task<FileContentResult> GenerateDemoWord()
         {

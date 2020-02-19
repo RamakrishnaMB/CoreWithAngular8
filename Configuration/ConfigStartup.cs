@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using UploadServer;
+
 
 namespace Configuration
 {
@@ -33,6 +33,7 @@ namespace Configuration
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IContactUsServices, ContactUsServices>();
             services.AddTransient<IGeneratePdf, GeneratePdf>();
+            services.AddTransient<IGenerateWord, GenerateWord>();
         }
     }
 }
