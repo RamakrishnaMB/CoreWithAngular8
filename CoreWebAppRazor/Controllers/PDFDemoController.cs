@@ -10,10 +10,12 @@ namespace CoreWebAppRazor.Controllers
     public class PDFDemoController : Controller
     {
         private readonly IGeneratePdf generatPdf;
+        private readonly IGenerateWord generateWord;
 
-        public PDFDemoController(IGeneratePdf generatPdf)
+        public PDFDemoController(IGeneratePdf generatPdf,IGenerateWord generateWord)
         {
             this.generatPdf = generatPdf;
+            this.generateWord = generateWord;
         }
         public IActionResult Index()
         {
@@ -26,5 +28,12 @@ namespace CoreWebAppRazor.Controllers
             FileContentResult fileContentResult = await this.generatPdf.GeneratePDFAsync();
             return fileContentResult;
         }
+
+        public async Task<IActionResult> DownloadWordAsync()
+        {
+            FileContentResult fileContentResult = await this.generateWord.GenerateDemoWord();
+            return fileContentResult;
+        }
+
     }
 }
