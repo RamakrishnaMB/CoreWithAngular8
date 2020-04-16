@@ -26,7 +26,7 @@ namespace CoreWebAPIServices
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:58700").WithHeaders(HeaderNames.ContentType, "application/json").AllowAnyMethod();
+                    builder.WithOrigins("http://localhost:58700", "http://localhost:10105").WithHeaders(HeaderNames.ContentType, "application/json").AllowAnyMethod();
                 });
             });
         }
